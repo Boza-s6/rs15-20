@@ -6,7 +6,11 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow window;
-    window.showFullScreen();
+
+    QIcon icon("C:/Users/lenovo/Desktop/FenixTanks/img/tank_icon.png");
+    window.setWindowIcon(icon);
+
+    window.showMaximized();
     //window.show();
 
 
