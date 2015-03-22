@@ -8,11 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //moguce je da ce te morati da promenite putanju da odgovara vama
-    //moja je: C:/Users/lenovo/Desktop/FenixTanks/img/bg.png
+    //Podesiti da GitHub sinhronizuje projekat na sl. adresi C:\FenixTanks
+    //Posto svi imamo C
 
     m_pPalette	= new QPalette();
-    m_pPixmap		= new QPixmap("C:/Users/lenovo/Desktop/FenixTanks/img/bg.png");
+    m_pPixmap	= new QPixmap("C:/FenixTanks/img/bg.png");
 
     m_pPalette->setBrush(QPalette::Background,QBrush(*m_pPixmap));
     setPalette(*m_pPalette);
