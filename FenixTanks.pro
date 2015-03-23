@@ -21,6 +21,7 @@ FORMS    += mainwindow.ui
 
 QMAKE_CXXFLAGS += -std=c++11
 
-RESOURCES += img/*.png\
-        img/*.jpeg\
-        img/*.jpg
+#
+#RESOURCES += img/*.png\
+#             img/*.jpeg\
+#             img/*.jpg\
