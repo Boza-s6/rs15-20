@@ -16,7 +16,9 @@ public:
     ~MainWindow();
     void resizeEvent (QResizeEvent* event);
 private slots:
-    void on_btnClose_clicked();
+    void on_btn_1player_clicked();
+    void on_btn_2players_clicked();
+    void on_btn_exit_clicked();
 
 private:
     Ui::MainWindow *ui;

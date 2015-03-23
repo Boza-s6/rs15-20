@@ -21,15 +21,31 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="1" column="2">
-     <spacer name="horizontalSpacer_2">
+    <item row="3" column="1">
+     <widget class="QPushButton" name="btn_exit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Exit</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <spacer name="verticalSpacer_2">
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Minimum</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>40</width>
-        <height>20</height>
+        <width>20</width>
+        <height>40</height>
        </size>
       </property>
      </spacer>
@@ -47,10 +63,13 @@
       </property>
      </spacer>
     </item>
-    <item row="1" column="0">
-     <spacer name="horizontalSpacer">
+    <item row="1" column="2">
+     <spacer name="horizontalSpacer_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
@@ -61,7 +80,7 @@
      </spacer>
     </item>
     <item row="1" column="1">
-     <widget class="QPushButton" name="btnStart">
+     <widget class="QPushButton" name="btn_1player">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -69,35 +88,38 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Start</string>
+       <string>1 Player</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="btnClose">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Close</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <spacer name="verticalSpacer_2">
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
       <property name="orientation">
-       <enum>Qt::Vertical</enum>
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Minimum</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>20</width>
-        <height>40</height>
+        <width>40</width>
+        <height>20</height>
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="btn_2players">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>2 Players</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -105,4 +127,8 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <slots>
+  <signal>exit_signal()</signal>
+  <slot>exit()</slot>
+ </slots>
 </ui>

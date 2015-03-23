@@ -30,7 +30,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_btnClose_clicked()
+void MainWindow::on_btn_exit_clicked()
 {
+    close();
+}
+
+void MainWindow::on_btn_1player_clicked()
+{
+    //TODO: implementirati osobinu, close radi provere ispravnosti
+    close();
+}
+
+void MainWindow::on_btn_2players_clicked()
+{
+    //TODO: implementirati osobinu, close radi provere ispravnosti
     close();
 }

@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2015-03-21T17:26:57
+# Project created by QtCreator 2015-03-23T12:08:54
 #
 #-------------------------------------------------
 
@@ -18,9 +18,3 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
-
-QMAKE_CXXFLAGS += -std=c++11
-
-RESOURCES += img/*.png\
-        img/*.jpeg\
-        img/*.jpg
