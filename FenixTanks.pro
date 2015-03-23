@@ -18,3 +18,9 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+QMAKE_CXXFLAGS += -std=c++11
+
+RESOURCES += img/*.png\
+        img/*.jpeg\
+        img/*.jpg
