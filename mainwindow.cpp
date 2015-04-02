@@ -19,9 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QIcon exit;
     QIcon player;
     QIcon players;
+
     exit.addFile(QString::fromUtf8("img/exit.jpg"), QSize(), QIcon::Normal, QIcon::Off);
     player.addFile(QString::fromUtf8("img/player1.jpg"), QSize(), QIcon::Normal, QIcon::Off);
     players.addFile(QString::fromUtf8("img/player2.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+
     ui->btn_exit->setIcon(exit);
     ui->btn_1player->setIcon(player);
     ui->btn_2players->setIcon(players);

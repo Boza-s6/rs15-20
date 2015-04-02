@@ -9,10 +9,7 @@ int main(int argc, char *argv[])
     QIcon icon("img/tank_icon.png");
     window.setWindowIcon(icon);
 
-    window.showMaximized();
-    //window.show();
-
-
+    window.showFullScreen();
 
     return a.exec();
 }
