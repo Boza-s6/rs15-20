@@ -21,9 +21,10 @@ private slots:
     void on_btn_exit_clicked();
 
 private:
+    QWidget *background;
     Ui::MainWindow *ui;
     QPixmap* m_pPixmap;
-      QPalette* m_pPalette;
+    QPalette* m_pPalette;
 };
 
 #endif // MAINWINDOW_H

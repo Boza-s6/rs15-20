@@ -13,15 +13,20 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    gamewindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    gamewindow.h
 
 FORMS    += mainwindow.ui
 
 QMAKE_CXXFLAGS += -std=c++11
 
-#
+RESOURCES     = img_resource.qrc
+
+
+
 #RESOURCES += img/*.png\
 #             img/*.jpeg\
 #             img/*.jpg\

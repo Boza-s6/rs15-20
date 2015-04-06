@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/bg.png</file>
+        <file>img/exit.jpg</file>
+        <file>img/player1.jpg</file>
+        <file>img/player2.jpg</file>
+        <file>img/tank_icon.png</file>
+    </qresource>
+</RCC>

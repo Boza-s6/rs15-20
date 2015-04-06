@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QPalette>
 #include <QDesktopWidget>
+#include "gamewindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_pPalette	= new QPalette();
-    m_pPixmap	= new QPixmap("img/bg.png");
+    m_pPixmap	= new QPixmap(":/img/bg.png");
 
     m_pPalette->setBrush(QPalette::Background,QBrush(*m_pPixmap));
     setPalette(*m_pPalette);
@@ -20,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QIcon player;
     QIcon players;
 
-    exit.addFile(QString::fromUtf8("img/exit.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    player.addFile(QString::fromUtf8("img/player1.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    players.addFile(QString::fromUtf8("img/player2.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    exit.addFile(QString::fromUtf8(":/img/exit.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    player.addFile(QString::fromUtf8(":/img/player1.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    players.addFile(QString::fromUtf8(":/img/player2.jpg"), QSize(), QIcon::Normal, QIcon::Off);
 
     ui->btn_exit->setIcon(exit);
     ui->btn_1player->setIcon(player);
@@ -30,6 +31,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->btn_exit->setIconSize(QSize(156, 52));
     ui->btn_1player->setIconSize(QSize(156, 52));
     ui->btn_2players->setIconSize(QSize(156, 52));
+
+    background = new GameWindow();
+    //za test rezim
+    //ui->btn_1player->click();
 }
 
 //kad se prozor resizuje da se scalira slika
@@ -51,8 +56,10 @@ void MainWindow::on_btn_exit_clicked()
 
 void MainWindow::on_btn_1player_clicked()
 {
-    //TODO: implementirati osobinu, close radi provere ispravnosti
-    close();
+    QWidget * tmp = this->centralWidget();
+    setCentralWidget(background);
+    background = tmp;
+    background->setParent(0);
 }
 
 void MainWindow::on_btn_2players_clicked()
