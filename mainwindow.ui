@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>707</width>
-    <height>347</height>
+    <width>845</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,6 +31,16 @@
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="img_resource.qrc">
+        <normaloff>:/img/exit.jpg</normaloff>:/img/exit.jpg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>156</width>
+        <height>52</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -93,6 +103,16 @@
       <property name="text">
        <string/>
       </property>
+      <property name="icon">
+       <iconset resource="img_resource.qrc">
+        <normaloff>:/img/player1.jpg</normaloff>:/img/player1.jpg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>156</width>
+        <height>52</height>
+       </size>
+      </property>
      </widget>
     </item>
     <item row="1" column="0">
@@ -122,13 +142,25 @@
       <property name="text">
        <string/>
       </property>
+      <property name="icon">
+       <iconset resource="img_resource.qrc">
+        <normaloff>:/img/player2.jpg</normaloff>:/img/player2.jpg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>156</width>
+        <height>52</height>
+       </size>
+      </property>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="img_resource.qrc"/>
+ </resources>
  <connections/>
  <slots>
   <signal>exit_signal()</signal>

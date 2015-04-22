@@ -16,22 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_pPalette->setBrush(QPalette::Background,QBrush(*m_pPixmap));
     setPalette(*m_pPalette);
 
-    //Exit, 1 Player, 2 Players btn img
-    QIcon exit;
-    QIcon player;
-    QIcon players;
-
-    exit.addFile(QString::fromUtf8(":/img/exit.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    player.addFile(QString::fromUtf8(":/img/player1.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    players.addFile(QString::fromUtf8(":/img/player2.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-
-    ui->btn_exit->setIcon(exit);
-    ui->btn_1player->setIcon(player);
-    ui->btn_2players->setIcon(players);
-    ui->btn_exit->setIconSize(QSize(156, 52));
-    ui->btn_1player->setIconSize(QSize(156, 52));
-    ui->btn_2players->setIconSize(QSize(156, 52));
-
     background = new GameWindow();
     //za test rezim
     //ui->btn_1player->click();
