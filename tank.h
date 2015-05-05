@@ -7,7 +7,7 @@ class Tank : public QGraphicsItem
 
 public:
     enum class Vrsta{PRVI, DRUGI, BOT};
-    enum class Orijentacija{LEVO, GORE, DESNO, DOLE};
+    enum Orijentacija{LEVO=0, GORE=1, DESNO=2, DOLE=3};
 
     Tank( Vrsta igrac, Orijentacija ori);
     ~Tank();
