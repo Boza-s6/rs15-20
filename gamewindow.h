@@ -8,7 +8,8 @@
 #include <QPen>
 #include <QRect>
 #include <QGraphicsPixmapItem>
-
+#include "tank.h"
+#include <QTimer>
 
 class GameWindow : public QWidget
 {
@@ -22,10 +23,10 @@ private:
     QGraphicsScene * scene;
     QGraphicsView  * view;
     int sceneWidth;
+    QTimer *mTimer;
 
     static const int numberOfFields = 13;
-    QGraphicsPixmapItem * level[numberOfFields][numberOfFields];
-
+//    std::vector<Tank*> tanks;
 
 };
 

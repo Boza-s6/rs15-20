@@ -5,5 +5,8 @@
         <file>img/player1.jpg</file>
         <file>img/player2.jpg</file>
         <file>img/tank_icon.png</file>
+        <file>img/bg_pattern.png</file>
+        <file>img/player1_tank.png</file>
+        <file>img/player2_tank.png</file>
     </qresource>
 </RCC>

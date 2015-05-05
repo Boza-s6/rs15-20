@@ -2,42 +2,53 @@
 #include <QGraphicsRectItem>
 #include <QVBoxLayout>
 #include <QPixmap>
-
+#include <QTimer>
 
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent)
 {
+
     auto * layout= new QVBoxLayout();
     layout->setMargin(0);
     this->setLayout(layout);
 
     view  = new QGraphicsView();
-    scene = new QGraphicsScene();
+    scene = new QGraphicsScene(view);
 
     this->layout()->addWidget(view);
     view->setScene(scene);
 
-    QBrush tenkBrush(Qt::green);
-    QPen outlinePen(Qt::black);
 
-    auto pm = QPixmap(":/img/tank_icon.png");
-    tenkBrush.setTexture(pm);
-
-//auto * rectangle = scene->addRect(0,0, 100, 100, QPen(), tenkBrush);
-for(int i=0; i<numberOfFields; i++){
-    for(int j=0; j<numberOfFields; j++){
-        auto tmp = scene->addPixmap(pm);
-        tmp->setScale(2);
-        tmp->setPos(50*i, 50*j);
-    }
-}
+    view->setRenderHint(QPainter::Antialiasing);
+    view->setBackgroundBrush(QPixmap(":/img/bg_pattern.png"));
+    //! [4] //! [5]
+    view->setCacheMode(QGraphicsView::CacheBackground);
+    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    view->setDragMode(QGraphicsView::ScrollHandDrag);
+    //! [5] //! [6]
+    view->setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Fenix Tanks"));
+    view->resize(400, 300);
+    view->show();
 
 
 
+    //butik je otvoren
+
+//    tanks.push_back(new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE));
+    Tank *tank = new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE);
+    scene->addItem(tank);
+
+    mTimer = new QTimer(this);
+    QObject::connect(mTimer, SIGNAL(timeout()), scene, SLOT(advance()));
+    mTimer->start(30);
 }
 
 GameWindow::~GameWindow()
 {
+    delete mTimer;
+    delete scene;
+    delete view;
+
 
 }
 

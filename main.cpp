@@ -15,5 +15,7 @@ int main(int argc, char *argv[])
     window.showMaximized();//U test rezimu, da imam x za izlazak
     //window.showFullScreen();
     //window.show();
+
+
     return a.exec();
 }
