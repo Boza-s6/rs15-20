@@ -25,7 +25,6 @@ private:
     int sceneWidth;
     QTimer *mTimer;
 
-    static const int numberOfFields = 13;
 //    std::vector<Tank*> tanks;
 
 };

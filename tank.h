@@ -6,6 +6,9 @@ class Tank : public QGraphicsItem
 {
 
 public:
+    /*
+     * Vrsta tenka, prvi ili drugi igrac
+     * */
     enum class Vrsta{PRVI, DRUGI, BOT};
     enum Orijentacija{LEVO=0, GORE=1, DESNO=2, DOLE=3};
 
@@ -13,13 +16,13 @@ public:
     ~Tank();
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
-    //QPainterPath shape() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) Q_DECL_OVERRIDE;
     virtual void keyPressEvent(QKeyEvent * event);
 
 public slots:
-    void advance(int) Q_DECL_OVERRIDE;
+    void advance(int step) Q_DECL_OVERRIDE; // trebace za Botove,
+                                            //  kad ih budemo implementirali
 
 private:
     Vrsta mVrsta;

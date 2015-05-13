@@ -8,5 +8,6 @@
         <file>img/bg_pattern.png</file>
         <file>img/player1_tank.png</file>
         <file>img/player2_tank.png</file>
+        <file>img/metak.png</file>
     </qresource>
 </RCC>

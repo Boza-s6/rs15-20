@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     gamewindow.cpp \
-    tank.cpp
+    tank.cpp \
+    metak.cpp
 
 HEADERS  += mainwindow.h \
     gamewindow.h \
-    tank.h
+    tank.h \
+    metak.h
 
 FORMS    += mainwindow.ui
 

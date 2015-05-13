@@ -3,6 +3,7 @@
 #include <QVBoxLayout>
 #include <QPixmap>
 #include <QTimer>
+#include "metak.h"
 
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent)
@@ -38,6 +39,8 @@ GameWindow::GameWindow( QWidget *parent)
     Tank *tank = new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE);
     scene->addItem(tank);
     tank->setFocus();
+
+    scene->addItem(new Metak(Metak::Orijentacija::GORE, QPoint(0,0))); //proba!!!!!
 
     mTimer = new QTimer(this);
     QObject::connect(mTimer, SIGNAL(timeout()), scene, SLOT(advance()));

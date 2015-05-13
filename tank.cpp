@@ -8,7 +8,7 @@ Tank::Tank( Vrsta igrac = Vrsta::PRVI, Orijentacija ori = Orijentacija::GORE):
                                       ":/img/player2_tank.png" : ":/img/bot.png"),
     mOrij(ori)
 {
-    mSpeed = 5; //pikseli po sekundi
+    mSpeed = 10; //pikseli po sekundi
     isMoving = false;
     isAlive = true;
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
@@ -21,13 +21,18 @@ Tank::~Tank()
 }
 
 QRectF Tank::boundingRect() const{
-    return mSlika.rect();
+//    return mSlika.rect();
+    qreal adjust = 0.5;
+    return QRectF(-100 - adjust, -100 - adjust,
+                  200 + adjust, 200 + adjust);
 }
 
 
 void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
                  QWidget *)
 {
+    painter->drawRect(QRectF(-100, -100, 200 , 200 ));
+    painter->drawRect(mSlika.rect());
     int x = mSlika.rect().width();
     int y = mSlika.rect().height();
     painter->drawPixmap(-x/2,-y/2, mSlika);
@@ -46,13 +51,11 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     painter->drawLine(QPoint(-20, 0), QPoint(20, 0));
     painter->drawLine(QPoint(0, -20), QPoint(0, 10));
 
-    update();
+//    update(); //!!!!!!!!!!!!!!!!!!! TO NE VALJA NISTA!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 void Tank::keyPressEvent(QKeyEvent *event)
 {
-    Orijentacija nova;
-    int n;
 
     int key = event->key();
     switch (key) {
@@ -85,8 +88,10 @@ void Tank::keyPressEvent(QKeyEvent *event)
     QGraphicsItem::keyPressEvent(event);
 }
 
-void Tank::advance(int)
+void Tank::advance(int step)
 {
+    if(step == 0)
+        return;
     //    std::cout << "SARIC JE MORON" << std::endl;
 
     //   moveBy(4, 0);

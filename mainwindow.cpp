@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 //kad se prozor resizuje da se scalira slika
-void MainWindow::resizeEvent (QResizeEvent* event)
+void MainWindow::resizeEvent (QResizeEvent*)
 {
     m_pPalette->setBrush(QPalette::Background,QBrush(m_pPixmap->scaled(width(),height())));
     setPalette(*m_pPalette);
@@ -31,6 +31,9 @@ void MainWindow::resizeEvent (QResizeEvent* event)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete m_pPalette;
+//    delete background; //puca kad se ovo odkomentarise ????
+//    delete m_pPalette;
 }
 
 void MainWindow::on_btn_exit_clicked()
