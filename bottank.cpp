@@ -67,16 +67,16 @@ void BotTank::advance(int step)
         //std::cout<<angleToMouse<<std::endl;
 
 
-        if (lineToMouse.dy() < 0)
+        if (lineToMouse.dy() > 0)
             angleToMouse = TwoPi - angleToMouse;
         angleToMouse = normalizeAngle((Pi - angleToMouse) + Pi / 2);
 
         if (angleToMouse >= 0 && angleToMouse < Pi / 2) {
             // Rotate right
-            mAngle -= 90;
+            mAngle += 90;
         } else if (angleToMouse <= TwoPi && angleToMouse > (TwoPi - Pi / 2)) {
             // Rotate left
-            mAngle += 90;
+            mAngle -= 90;
 
         }
     }

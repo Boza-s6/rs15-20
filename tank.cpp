@@ -13,6 +13,7 @@ Tank::Tank( Vrsta igrac = Vrsta::PRVI, Orijentacija ori = Orijentacija::GORE):
     isAlive = true;
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
 
+
 }
 
 Tank::~Tank()
@@ -33,7 +34,7 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
 {
     int x = mSlika.rect().width();
     int y = mSlika.rect().height();
-
+ this->setFocus();
     painter->drawPixmap(-x/2,-y/2, mSlika);
 
 }
