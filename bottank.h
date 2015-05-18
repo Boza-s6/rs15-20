@@ -12,7 +12,7 @@ public:
     enum class Vrsta{PRVI, DRUGI, BOT};
     enum Orijentacija{LEVO=0, GORE=1, DESNO=2, DOLE=3};
 
-    BotTank( Orijentacija ori);
+    BotTank( Orijentacija ori, qreal x, qreal y);
     ~BotTank();
 
 

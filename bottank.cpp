@@ -14,14 +14,14 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-BotTank::BotTank( Orijentacija ori = Orijentacija::GORE):
+BotTank::BotTank( Orijentacija ori = Orijentacija::GORE, qreal x=0, qreal y=0):
     mSlika(":/img/player2_tank.png"), mOrij(ori)
 {
     mSpeed = 10; //pikseli po sekundi
     isMoving = false;
     isAlive = true;
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
-
+    setPos(x,y);
 }
 
 

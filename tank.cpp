@@ -3,7 +3,7 @@
 #include <iostream>
 #include <QKeyEvent>
 
-Tank::Tank( Vrsta igrac = Vrsta::PRVI, Orijentacija ori = Orijentacija::GORE):
+Tank::Tank( Vrsta igrac = Vrsta::PRVI, Orijentacija ori = Orijentacija::GORE, qreal x=0, qreal y=0):
     mSlika((igrac == Vrsta::PRVI)?":/img/player1_tank.png":(igrac == Vrsta::DRUGI)?
                                       ":/img/player2_tank.png" : ":/img/bot.png"),
     mOrij(ori)
@@ -12,7 +12,7 @@ Tank::Tank( Vrsta igrac = Vrsta::PRVI, Orijentacija ori = Orijentacija::GORE):
     isMoving = false;
     isAlive = true;
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
-
+    setPos(x,y);
 
 }
 

@@ -12,7 +12,7 @@ public:
     enum class Vrsta{PRVI, DRUGI, BOT};
     enum Orijentacija{LEVO=0, GORE=1, DESNO=2, DOLE=3};
 
-    Tank( Vrsta igrac, Orijentacija ori);
+    Tank( Vrsta igrac, Orijentacija ori, qreal x, qreal y);
     ~Tank();
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
