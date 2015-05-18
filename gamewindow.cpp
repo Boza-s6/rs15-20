@@ -46,7 +46,7 @@ GameWindow::GameWindow( QWidget *parent)
 
     // scene->addItem(new Metak(Metak::Orijentacija::GORE, QPoint(0,0))); //proba!!!!!
 
-   scene->addItem(new BotTank(BotTank::Vrsta::BOT, BotTank::Orijentacija::LEVO ));
+   scene->addItem(new BotTank( BotTank::Orijentacija::LEVO ));
 
 //      scene->addItem(new BotTank(BotTank::Vrsta::BOT, BotTank::Orijentacija::DESNO ));
     mTimer = new QTimer(this);

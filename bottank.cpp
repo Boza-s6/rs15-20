@@ -14,7 +14,7 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-BotTank::BotTank( Vrsta igrac = Vrsta::BOT, Orijentacija ori = Orijentacija::GORE):
+BotTank::BotTank( Orijentacija ori = Orijentacija::GORE):
     mSlika(":/img/player2_tank.png"), mOrij(ori)
 {
     mSpeed = 10; //pikseli po sekundi
@@ -64,17 +64,19 @@ void BotTank::advance(int step)
 
         QLineF lineToMouse(QPointF(0, 0), mapFromItem(item, 0, 0));
         qreal angleToMouse = ::acos(lineToMouse.dx() / lineToMouse.length());
-        std::cout<<angleToMouse<<std::endl;
+        //std::cout<<angleToMouse<<std::endl;
+
+
         if (lineToMouse.dy() < 0)
             angleToMouse = TwoPi - angleToMouse;
         angleToMouse = normalizeAngle((Pi - angleToMouse) + Pi / 2);
 
         if (angleToMouse >= 0 && angleToMouse < Pi / 2) {
             // Rotate right
-            mAngle -= 5;
+            mAngle -= 90;
         } else if (angleToMouse <= TwoPi && angleToMouse > (TwoPi - Pi / 2)) {
             // Rotate left
-            mAngle += 5;
+            mAngle += 90;
 
         }
     }
