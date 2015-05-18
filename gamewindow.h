@@ -25,6 +25,7 @@ private:
     int sceneWidth;
     QTimer *mTimer;
 
+
 //    std::vector<Tank*> tanks;
 
 };

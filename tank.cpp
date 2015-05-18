@@ -21,35 +21,20 @@ Tank::~Tank()
 }
 
 QRectF Tank::boundingRect() const{
-//    return mSlika.rect();
-    qreal adjust = 0.5;
-    return QRectF(-100 - adjust, -100 - adjust,
-                  200 + adjust, 200 + adjust);
+
+    qreal a=mSlika.rect().width();
+    qreal s=mSlika.rect().height();
+    return QRectF(-a/2, -s/2 -2, a, s);
 }
 
 
 void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
                  QWidget *)
 {
-    painter->drawRect(QRectF(-100, -100, 200 , 200 ));
-    painter->drawRect(mSlika.rect());
     int x = mSlika.rect().width();
     int y = mSlika.rect().height();
+
     painter->drawPixmap(-x/2,-y/2, mSlika);
-
-    //    // Ears
-    //    painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : Qt::red);
-    //    painter->drawEllipse(0, 0, 16, 16);
-    //    painter->drawEllipse(0, 0, 16, 16);
-
-
-    QPen pen;
-    pen.setColor(Qt::yellow);
-    pen.setWidth(2);
-    painter->setPen(pen);
-
-    painter->drawLine(QPoint(-20, 0), QPoint(20, 0));
-    painter->drawLine(QPoint(0, -20), QPoint(0, 10));
 
 }
 

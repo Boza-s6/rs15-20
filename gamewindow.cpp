@@ -4,6 +4,7 @@
 #include <QPixmap>
 #include <QTimer>
 #include "metak.h"
+#include "bottank.h"
 
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent)
@@ -31,6 +32,9 @@ GameWindow::GameWindow( QWidget *parent)
     view->resize(400, 300);
     view->show();
 
+    QPen olovka(Qt::white);
+    olovka.setWidth(5);
+    scene->addRect(0,0,1000,600, olovka);
 
 
     //butik je otvoren!!!
@@ -40,8 +44,11 @@ GameWindow::GameWindow( QWidget *parent)
     scene->addItem(tank);
     tank->setFocus();
 
-    scene->addItem(new Metak(Metak::Orijentacija::GORE, QPoint(0,0))); //proba!!!!!
+    // scene->addItem(new Metak(Metak::Orijentacija::GORE, QPoint(0,0))); //proba!!!!!
 
+   scene->addItem(new BotTank(BotTank::Vrsta::BOT, BotTank::Orijentacija::LEVO ));
+
+//      scene->addItem(new BotTank(BotTank::Vrsta::BOT, BotTank::Orijentacija::DESNO ));
     mTimer = new QTimer(this);
     QObject::connect(mTimer, SIGNAL(timeout()), scene, SLOT(advance()));
     mTimer->start(30);
