@@ -33,9 +33,9 @@ GameWindow::GameWindow( QWidget *parent)
 
 
 
-    //butik je otvoren
+    //butik je otvoren!!!
 
-//    tanks.push_back(new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE));
+    //tanks.push_back(new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE));
     Tank *tank = new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE);
     scene->addItem(tank);
     tank->setFocus();

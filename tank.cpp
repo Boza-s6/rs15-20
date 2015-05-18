@@ -51,7 +51,6 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     painter->drawLine(QPoint(-20, 0), QPoint(20, 0));
     painter->drawLine(QPoint(0, -20), QPoint(0, 10));
 
-//    update(); //!!!!!!!!!!!!!!!!!!! TO NE VALJA NISTA!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 void Tank::keyPressEvent(QKeyEvent *event)
@@ -92,7 +91,7 @@ void Tank::advance(int step)
 {
     if(step == 0)
         return;
-    //    std::cout << "SARIC JE MORON" << std::endl;
+
 
     //   moveBy(4, 0);
 

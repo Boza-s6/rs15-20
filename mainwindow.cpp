@@ -32,8 +32,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete m_pPalette;
-//    delete background; //puca kad se ovo odkomentarise ????
-//    delete m_pPalette;
 }
 
 void MainWindow::on_btn_exit_clicked()
