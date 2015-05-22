@@ -50,7 +50,10 @@ GameWindow::GameWindow( QWidget *parent)
     player->setFocus();
     scene->addItem(player);
 
-
+    /*
+    Bullet *b=new Bullet(Tank::Orientation::LEFT, QPointF(0,0) );
+    scene->addItem(b);
+*/
     mTimer = new QTimer(this);
     QObject::connect(mTimer, SIGNAL(timeout()), scene, SLOT(advance()));
     mTimer->start(30);

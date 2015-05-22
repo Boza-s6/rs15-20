@@ -22,7 +22,7 @@ public slots:
 
 private:
     QPixmap mImage;
-    Tank::Orientation mDirection;
+    Tank::Orientation mOrientation;
     QPointF mPoint;
     qreal mSpeed;
 };

@@ -35,7 +35,7 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
 {
     int x = mImage.rect().width();
     int y = mImage.rect().height();
- this->setFocus();
+    this->setFocus();
     painter->drawPixmap(-x/2,-y/2, mImage);
 
 }
