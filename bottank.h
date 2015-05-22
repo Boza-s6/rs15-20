@@ -4,38 +4,20 @@
 #include <QPainter>
 #include <QGraphicsScene>
 #include <QGraphicsItem>
+#include "tank.h"
 
-
-class BotTank: public QGraphicsItem
+class BotTank: public Tank
 {
 public:
-    enum class Vrsta{PRVI, DRUGI, BOT};
-    enum Orijentacija{LEVO=0, GORE=1, DESNO=2, DOLE=3};
 
-    BotTank( Orijentacija ori, qreal x, qreal y);
+    BotTank(qreal x, qreal y);
     ~BotTank();
-
-
-
-
-
-    QRectF boundingRect() const Q_DECL_OVERRIDE;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-               QWidget *widget) Q_DECL_OVERRIDE;
-    //virtual void keyPressEvent(QKeyEvent * event);
-
 public slots:
-    void advance(int step) Q_DECL_OVERRIDE;
+    virtual void advance(int step) Q_DECL_OVERRIDE;
 
 private:
-    Vrsta mVrsta;
+
     qreal mAngle;
-    qreal mSpeed;
-    QPixmap mSlika;
-    Orijentacija mOrij;
-
-    bool isMoving, isAlive;
-
 
 };
 

@@ -3,7 +3,7 @@
 #include <QVBoxLayout>
 #include <QPixmap>
 #include <QTimer>
-#include "metak.h"
+#include "bullet.h"
 #include "bottank.h"
 
 GameWindow::GameWindow( QWidget *parent)
@@ -40,15 +40,16 @@ GameWindow::GameWindow( QWidget *parent)
     //butik je otvoren!!!
 
     //tanks.push_back(new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE));
-    Tank *tank = new Tank(Tank::Vrsta::PRVI, Tank::Orijentacija::GORE,300,300);
+
+    BotTank *tank = new BotTank( 300,300);
     scene->addItem(tank);
     tank->setFocus();
 
     // scene->addItem(new Metak(Metak::Orijentacija::GORE, QPoint(0,0))); //proba!!!!!
 
-    BotTank *b=new BotTank( BotTank::Orijentacija::LEVO,600,600 );
+    //BotTank *b=new BotTank(Tank::TType::BOT, Tank::Orientation::LEFT,600,600 );
 
-    scene->addItem(b);
+    //scene->addItem(b);
 
 //      scene->addItem(new BotTank(BotTank::Vrsta::BOT, BotTank::Orijentacija::DESNO ));
     mTimer = new QTimer(this);

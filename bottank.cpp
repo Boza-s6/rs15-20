@@ -1,5 +1,6 @@
 
 #include "bottank.h"
+#include "tank.h"
 #include <math.h>
 #include <iostream>
 static const double Pi = 3.14159265358979323846264338327950288419717;
@@ -14,14 +15,9 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-BotTank::BotTank( Orijentacija ori = Orijentacija::GORE, qreal x=0, qreal y=0):
-    mSlika(":/img/player2_tank.png"), mOrij(ori)
+BotTank::BotTank(qreal x, qreal y): Tank(Tank::Orientation::UP, x,y, ":/img/player2_tank.png")
 {
-    mSpeed = 10; //pikseli po sekundi
-    isMoving = false;
-    isAlive = true;
-    setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
-    setPos(x,y);
+
 }
 
 
@@ -30,21 +26,6 @@ BotTank::~BotTank()
 
 }
 
-QRectF BotTank::boundingRect() const
-{
-    qreal a=mSlika.rect().width();
-    qreal s=mSlika.rect().height();
-    return QRectF(-a/2, -s/2 -2, a, s);
-
-}
-
-void BotTank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    int x = mSlika.rect().width();
-    int y = mSlika.rect().height();
-
-    painter->drawPixmap(-x/2,-y/2, mSlika);
-}
 void BotTank::advance(int step)
 {
     if (!step)
@@ -102,6 +83,6 @@ void BotTank::advance(int step)
 
 
     setRotation(mAngle);
-    setPos(mapToParent(0, -(3 + sin(mSpeed) * 3)));
+    setPos(mapToParent(0, -(3 + sin(Speed()) * 3)));
 }
 

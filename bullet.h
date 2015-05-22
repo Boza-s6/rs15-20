@@ -2,12 +2,12 @@
 #define METAK_H
 #include <QGraphicsItem>
 
-class Metak : public QGraphicsItem
+class Bullet : public QGraphicsItem
 {
 public:
-    enum Orijentacija{LEVO=0, GORE=1, DESNO=2, DOLE=3};
-    Metak(Orijentacija pravac, QPoint tacka);
-    ~Metak();
+    enum Orijentacija{LEFT=0, UP=1, RIGHT=2, DOWN=3};
+    Bullet(Orijentacija direction, QPoint point);
+    ~Bullet();
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -17,9 +17,9 @@ public slots:
     void advance(int step) Q_DECL_OVERRIDE;
 
 private:
-    QPixmap mSlika;
-    Orijentacija mPravac;
-    QPoint mTacka;
+    QPixmap mImage;
+    Orijentacija mDirection;
+    QPoint mPoint;
     qreal mSpeed;
 };
 
