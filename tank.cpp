@@ -20,6 +20,8 @@ Tank::~Tank()
 
 }
 
+
+
 QRectF Tank::boundingRect() const{
 
     qreal a=mImage.rect().width();
@@ -38,53 +40,49 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
 
 }
 
+int Tank::getAngleFromOrientation(Tank::Orientation ori)
+{
+    switch (ori) {
+    case Orientation::UP:
+        return 0;
+        break;
+    case Orientation::LEFT:
+        return -90;
+        break;
+    case Orientation::RIGHT:
+        return 90;
+        break;
+    case Orientation::DOWN:
+        return 180;
+        break;
+    }
+
+    return 0;
+}
+
 int Tank::Speed()
 {
     return mSpeed;
 }
 
-void Tank::keyPressEvent(QKeyEvent *event)
+void Tank::setOrientation(Tank::Orientation ori)
 {
-
-    int key = event->key();
-    switch (key) {
-    case Qt::Key_W:
-        mOrientation=Orientation::UP;
-        moveBy(0,-mSpeed);
-        setRotation(0);
-        break;
-    case Qt::Key_A:
-        mOrientation=Orientation::LEFT;
-        moveBy(-mSpeed,0);
-        setRotation(-90);
-        break;
-    case Qt::Key_D:
-        mOrientation=Orientation::RIGHT;
-        moveBy(mSpeed,0);
-        setRotation(90);
-        break;
-    case Qt::Key_S:
-        mOrientation=Orientation::DOWN;
-        moveBy(0,mSpeed);
-        setRotation(180);
-        break;
-    default:
-
-        break;
-    }
-
-    update();
-    QGraphicsItem::keyPressEvent(event);
+    mOrientation=ori;
 }
-
 
 void Tank::advance(int step)
 {
     if(step == 0)
         return;
-
-
-    //   moveBy(4, 0);
-
 }
+qreal Tank::speed() const
+{
+    return mSpeed;
+}
+
+void Tank::setSpeed(const qreal &speed)
+{
+    mSpeed = speed;
+}
+
 

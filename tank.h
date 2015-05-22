@@ -15,19 +15,22 @@ public:
     virtual QRectF boundingRect() const Q_DECL_OVERRIDE;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) Q_DECL_OVERRIDE;
-    virtual void keyPressEvent(QKeyEvent * event);
-    int getAngleFromOrientation(Orientation);
+   // virtual void keyPressEvent(QKeyEvent * event);
+    int getAngleFromOrientation(Orientation ori);
     int Speed();
+    void setOrientation(Orientation ori);
+
+    qreal speed() const;
+    void setSpeed(const qreal &speed);
 
 public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;
 
 private:
 
-
+    Orientation mOrientation;
     qreal mSpeed;
     QPixmap mImage;
-    Orientation mOrientation;
 
     bool isMoving, isAlive;
 

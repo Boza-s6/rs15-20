@@ -15,8 +15,9 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-BotTank::BotTank(qreal x, qreal y): Tank(Tank::Orientation::UP, x,y, ":/img/player2_tank.png")
+BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN): Tank(ori, x,y, ":/img/player2_tank.png")
 {
+    setRotation(getAngleFromOrientation(ori));
 
 }
 
@@ -33,6 +34,7 @@ void BotTank::advance(int step)
 
     // Try not to crash with any other mice
     //! [7]
+
     QList<QGraphicsItem *> Tanks = scene()->items(QPolygonF()
                                                   << mapToScene(0, 0)
                                                   << mapToScene(-30, -50)
@@ -82,7 +84,7 @@ void BotTank::advance(int step)
 */
 
 
-    setRotation(mAngle);
+   // setRotation(mAngle);
     setPos(mapToParent(0, -(3 + sin(Speed()) * 3)));
 }
 
