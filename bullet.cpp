@@ -3,13 +3,14 @@
 #include <iostream>
 #include <QKeyEvent>
 
-Bullet::Bullet(Orijentacija direction, QPoint point)
+Bullet::Bullet(Tank::Orientation direction, QPointF point)
     : mImage(":/img/metak.png"), mDirection(direction),
       mPoint(point)
 {
     mSpeed = 10; //pikslea po sek
     setFlags(QGraphicsItem::ItemIsMovable);
-    mapToScene(mPoint);
+    //mapToScene(mPoint);
+    setPos(point);
 
 }
 

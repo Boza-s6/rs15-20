@@ -41,11 +41,11 @@ GameWindow::GameWindow( QWidget *parent)
     //butik je otvoren!!!
 
 
-
+/*
     BotTank *bot = new BotTank( 300,300, Tank::Orientation::UP);
     scene->addItem(bot);
 
-
+*/
     PlayerTank *player = new PlayerTank( 500,300, Tank::Orientation::LEFT);
     player->setFocus();
     scene->addItem(player);

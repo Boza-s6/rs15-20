@@ -1,12 +1,16 @@
-#ifndef METAK_H
-#define METAK_H
+#ifndef BULLET_H
+#define BULLET_H
 #include <QGraphicsItem>
+#include <QObject>
+#include "tank.h"
 
 class Bullet : public QGraphicsItem
 {
+   // Q_OBJECT
 public:
-    enum Orijentacija{LEFT=0, UP=1, RIGHT=2, DOWN=3};
-    Bullet(Orijentacija direction, QPoint point);
+    //enum Tank::Orientation{LEFT=0, UP=1, RIGHT=2, DOWN=3};
+
+    Bullet(Tank::Orientation direction, QPointF point);
     ~Bullet();
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
@@ -18,9 +22,9 @@ public slots:
 
 private:
     QPixmap mImage;
-    Orijentacija mDirection;
-    QPoint mPoint;
+    Tank::Orientation mDirection;
+    QPointF mPoint;
     qreal mSpeed;
 };
 
-#endif // METAK_H
+#endif // BULLET_H

@@ -19,7 +19,7 @@ public:
     int getAngleFromOrientation(Orientation ori);
     int Speed();
     void setOrientation(Orientation ori);
-
+    Orientation getOrientation();
     qreal speed() const;
     void setSpeed(const qreal &speed);
 

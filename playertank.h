@@ -1,6 +1,7 @@
 #ifndef PLAYERTANK_H
 #define PLAYERTANK_H
 #include "tank.h"
+#include <QGraphicsScene>
 
 class PlayerTank : public Tank
 {

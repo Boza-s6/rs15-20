@@ -70,6 +70,11 @@ void Tank::setOrientation(Tank::Orientation ori)
     mOrientation=ori;
 }
 
+Tank::Orientation Tank::getOrientation()
+{
+    return mOrientation;
+}
+
 void Tank::advance(int step)
 {
     if(step == 0)
