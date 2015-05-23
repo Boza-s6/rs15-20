@@ -7,11 +7,11 @@
 #include <QString>
 #include <QObject>
 #include <QPixmap>
+#include <QGraphicsObject>
 
-class Brick : public QGraphicsItem
+class Brick : public QGraphicsObject
 {
     Q_OBJECT
-
 public:
     Brick(qreal x, qreal y);
     virtual ~Brick();

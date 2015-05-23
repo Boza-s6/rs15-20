@@ -1,6 +1,6 @@
 #include "button.h"
 #include <QGraphicsSceneMouseEvent>
-
+#include <QPainter>
 Button::Button(const char *text="DUGME", qreal x=0, qreal y=0)
     : mText(text),
       mImage(":/img/button.png"),
@@ -27,21 +27,19 @@ void Button::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     painter->drawRect(boundingRect()); // proba!!!!!
 
     //ako je dugme pritisnuto, isrtavamo odgovarajucu sliku
-    painter->drawPixmap(boundingRect(), pressed ? mImagePressed : mImage);
+    painter->drawPixmap(boundingRect().topLeft(), pressed ? mImagePressed : mImage);
 
     //iscrtavamo  tekst
     painter->drawText(boundingRect(), mText, QTextOption(Qt::AlignCenter));
 }
 
-void Button::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Button::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
-    QGraphicsItem::keyPressEvent(event);
     pressed = true;
 }
 
-void Button::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void Button::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-    QGraphicsItem::keyReleaseEvent(event);
     if(pressed)
     {
         pressed = false;

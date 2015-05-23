@@ -22,10 +22,19 @@ void Brick::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
 {
     painter->drawRect(boundingRect()); // proba!!!!!
 
-    painter->drawPixmap(boundingRect(), mImage);
+    painter->drawPixmap(boundingRect().topLeft(), mImage);
 }
 
 void Brick::advance(int phase)
 {
     if(!phase) return;
+}
+
+void Brick::hitted(int damage)
+{
+    mHealth -= damage;
+    if(mHealth == 0)
+    {
+        scene()->removeItem(this);
+    }
 }

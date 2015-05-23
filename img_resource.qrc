@@ -9,5 +9,9 @@
         <file>img/player1_tank.png</file>
         <file>img/player2_tank.png</file>
         <file>img/metak.png</file>
+        <file>img/button_clicked.png</file>
+        <file>img/button.png</file>
+        <file>img/stone.png</file>
+        <file>img/brick.png</file>
     </qresource>
 </RCC>

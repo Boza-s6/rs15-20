@@ -2,23 +2,22 @@
 #define BUTTON_H
 #include <QPainter>
 #include <QGraphicsScene>
-#include <QGraphicsItem>
+#include <QGraphicsObject>
 #include <QString>
 #include <QObject>
 #include <QMouseEvent>
 
-class Button : public QGraphicsItem
+class Button : public QGraphicsObject
 {
     Q_OBJECT
-
 public:
     Button(const char *text, qreal x, qreal y);
     ~Button();
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) Q_DECL_OVERRIDE;
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+    void mousePressEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *) Q_DECL_OVERRIDE;
 
 protected:
     void advance(int phase) Q_DECL_OVERRIDE;

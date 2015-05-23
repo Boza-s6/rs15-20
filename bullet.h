@@ -3,10 +3,11 @@
 #include <QGraphicsItem>
 #include <QObject>
 #include "tank.h"
+#include <QGraphicsObject>
 
-class Bullet : public QGraphicsItem
+class Bullet : public QGraphicsObject
 {
-   // Q_OBJECT
+    Q_OBJECT
 public:
     //enum Tank::Orientation{LEFT=0, UP=1, RIGHT=2, DOWN=3};
 
