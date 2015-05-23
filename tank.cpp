@@ -38,6 +38,7 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     this->setFocus();
     painter->drawPixmap(-x/2,-y/2, mImage);
 
+
 }
 
 int Tank::getAngleFromOrientation(Tank::Orientation ori)

@@ -55,7 +55,7 @@ void PlayerTank::keyPressEvent(QKeyEvent *event)
     }
         break;
 
-        default:
+    default:
         break;
     }
 
@@ -64,3 +64,17 @@ void PlayerTank::keyPressEvent(QKeyEvent *event)
 
 }
 
+void PlayerTank::advance(int step)
+{
+    if (!step)
+        return;
+
+
+    if (this->x()<0 || this->x()>1000 || this->y()<0 || this->y()>600) {
+       setSpeed(-10);
+    }
+    else
+       setSpeed(10);
+
+
+}

@@ -9,6 +9,8 @@ public:
     PlayerTank(qreal x, qreal y, Orientation ori);
     ~PlayerTank();
     void keyPressEvent(QKeyEvent * event);
+public slots:
+    virtual void advance(int step) Q_DECL_OVERRIDE;
 private:
 
 };

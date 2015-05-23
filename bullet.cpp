@@ -21,15 +21,13 @@ Bullet::~Bullet()
 
 QRectF Bullet::boundingRect() const
 {
-    return QRectF(mImage.rect());
-
-
+    qreal a=mImage.rect().width();
+    qreal s=mImage.rect().height();
+    return QRectF(-a/2, -s/2 -2, a, s);
 }
 
 void Bullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-
-
 
     int x = mImage.rect().width();
     int y = mImage.rect().height();
@@ -63,6 +61,13 @@ void Bullet::advance(int step)
         break;
     }
 
+    if (this->x()<0 || this->x()>1000) {
+        delete this;
+    }
+    if(this->y()<0 || this->y()>600){
+        delete this;
+
+    }
 }
 
 
