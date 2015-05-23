@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     tank.cpp \
     bottank.cpp \
     bullet.cpp \
-    playertank.cpp
+    playertank.cpp \
+    background.cpp
 
 HEADERS  += mainwindow.h \
     gamewindow.h \
     tank.h \
     bottank.h \
     bullet.h \
-    playertank.h
+    playertank.h \
+    background.h
 
 FORMS    += mainwindow.ui
 
