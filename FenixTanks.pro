@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     bullet.cpp \
     playertank.cpp \
     background.cpp \
-    button.cpp
+    button.cpp \
+    brick.cpp
 
 HEADERS  += mainwindow.h \
     gamewindow.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     bullet.h \
     playertank.h \
     background.h \
-    button.h
+    button.h \
+    brick.h
 
 FORMS    += mainwindow.ui
 
