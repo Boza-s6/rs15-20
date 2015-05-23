@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     playertank.cpp \
     background.cpp \
     button.cpp \
-    brick.cpp
+    brick.cpp \
+    specialgraphicsitem.cpp \
+    map.cpp
 
 HEADERS  += mainwindow.h \
     gamewindow.h \
@@ -31,7 +33,8 @@ HEADERS  += mainwindow.h \
     playertank.h \
     background.h \
     button.h \
-    brick.h
+    brick.h \
+    specialgraphicsitem.h
 
 FORMS    += mainwindow.ui
 
