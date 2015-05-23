@@ -5,22 +5,26 @@
 #include <string>
 #include <sstream>
 #include "brick.h"
+#define FIRST_MAP "first.map"
+#define SECOND_MAP "second.map"
+#define THIRD_MAP "third.map"
 
 namespace Map {
     static const int NUM_LINES = 14, NUM_BRICKS_IN_LINE = 20;
     static const qreal BRICK_SIZE = 50.0;
-    enum Maps{
-        FIRST = "first.map",
-        SECOND = "second.map",
-        THIRD = "third.map"
-    };
+//    static const char
+//        *FIRST = "first.map",
+//        *SECOND = "second.map",
+//        *THIRD = "third.map"
+//    ;
+
     enum BrickType{
         NO_BRICK = 0,
         BRICK = 1,
         SOLID_BRICK = 2
     };
 
-    void readMap(QGraphicsScene * scena, Maps map = Maps::FIRST)
+    void readMap(QGraphicsScene * scena, const char * map = FIRST_MAP)
     {
         /*
          * Svaka mapa ja 20 x 14 brojeva koji oznacavaju tip cigle

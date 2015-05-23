@@ -47,6 +47,7 @@ void BotTank::advance(int step)
            //ovo je igrac, usmeri botove ka njemu
             xp=item->x();
             yp=item->y();
+            break; //prekini cim ga nadjes
         }
     }
     foreach (QGraphicsItem *item, Tanks) {
