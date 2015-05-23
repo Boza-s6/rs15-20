@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     bottank.cpp \
     bullet.cpp \
     playertank.cpp \
-    background.cpp
+    background.cpp \
+    button.cpp
 
 HEADERS  += mainwindow.h \
     gamewindow.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     bottank.h \
     bullet.h \
     playertank.h \
-    background.h
+    background.h \
+    button.h
 
 FORMS    += mainwindow.ui
 
