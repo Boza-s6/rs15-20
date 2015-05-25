@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     button.cpp \
     brick.cpp \
     specialgraphicsitem.cpp \
-    map.cpp
+    map.cpp \
+    solidbrick.cpp
 
 HEADERS  += mainwindow.h \
     gamewindow.h \
@@ -34,7 +35,8 @@ HEADERS  += mainwindow.h \
     background.h \
     button.h \
     brick.h \
-    specialgraphicsitem.h
+    specialgraphicsitem.h \
+    solidbrick.h
 
 FORMS    += mainwindow.ui
 

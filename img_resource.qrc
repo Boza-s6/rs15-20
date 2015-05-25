@@ -13,6 +13,5 @@
         <file>img/button.png</file>
         <file>img/stone.png</file>
         <file>img/brick.png</file>
-        <file>maps/first.map</file>
     </qresource>
 </RCC>

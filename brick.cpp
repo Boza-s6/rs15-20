@@ -1,7 +1,7 @@
 #include "brick.h"
 
-Brick::Brick(qreal x, qreal y):
-    mImage(":/img/brick.png"),
+Brick::Brick(qreal x, qreal y, const char * path):
+    mImage(path),
     mHealth(100)
 {
     setPos(x, y);

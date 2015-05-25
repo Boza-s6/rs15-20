@@ -5,6 +5,8 @@
 #include <string>
 #include <sstream>
 #include "brick.h"
+#include "solidbrick.h"
+
 #define FIRST_MAP ":/maps/first.map"
 #define SECOND_MAP ":/maps/second.map"
 #define THIRD_MAP ":/maps/third.map"
@@ -55,7 +57,7 @@ namespace Map {
                     scena->addItem(new Brick(positionX, positionY));
                     break;
                 case BrickType::SOLID_BRICK:
-                    scena->addItem(new Brick(positionX, positionY));// !!! Dok ne napravi SolidBrick kalsu
+                    scena->addItem(new SolidBrick(positionX, positionY));// !!! Dok ne napravi SolidBrick kalsu
                 default:
                     break;
                 }
