@@ -36,7 +36,8 @@ HEADERS  += mainwindow.h \
     button.h \
     brick.h \
     specialgraphicsitem.h \
-    solidbrick.h
+    solidbrick.h \
+    map.h
 
 FORMS    += mainwindow.ui
 
