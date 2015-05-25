@@ -26,12 +26,12 @@ protected:
 public slots:
     void hitted(int damage);
 
-protected:
-    QPixmap mImage;
+
 private:
+    QPixmap mImage;
     int mHealth;
     qreal mWidth, mHeight;
-//    qreal mX, mY;
+    //    qreal mX, mY;
 };
 
 #endif // BRICK_H

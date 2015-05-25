@@ -2,7 +2,7 @@
 #define SOLIDBRICK_H
 #include "brick.h"
 
-class SolidBrick : protected Brick
+class SolidBrick : public Brick
 {
 public:
     SolidBrick(qreal x, qreal y);
