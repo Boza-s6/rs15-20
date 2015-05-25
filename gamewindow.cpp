@@ -30,7 +30,7 @@ GameWindow::GameWindow( QWidget *parent)
     view->setDragMode(QGraphicsView::ScrollHandDrag);
     //! [5] //! [6]
     view->setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Fenix Tanks"));
-    view->resize(400, 300);
+    view->resize(1050, 750);
     view->show();
 
     QPen olovka(Qt::white);
@@ -64,6 +64,12 @@ GameWindow::GameWindow( QWidget *parent)
     mTimer = new QTimer(this);
     QObject::connect(mTimer, SIGNAL(timeout()), scene, SLOT(advance()));
     mTimer->start(30);
+
+
+    view->setFocus();
+    scene->setFocus();
+    scene->setFocusItem(player);
+
 }
 
 GameWindow::~GameWindow()
