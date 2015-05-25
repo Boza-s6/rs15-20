@@ -28,9 +28,7 @@ namespace Map {
         SOLID_BRICK = 2
     };
 
-    void readMap(QGraphicsScene * scena, const char * map = FIRST_MAP)
-    {
-    }
+    void readMap(QGraphicsScene * scena, const char * map = FIRST_MAP);
 }
 
 #endif // MAP_H

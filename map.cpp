@@ -1,7 +1,7 @@
 #include "map.h"
 
 
-Map::readMap(QGraphicsScene *scena, const char *map)
+void Map::readMap(QGraphicsScene *scena, const char *map)
 {
     /*
      * Svaka mapa ja 20 x 14 brojeva koji oznacavaju tip cigle
