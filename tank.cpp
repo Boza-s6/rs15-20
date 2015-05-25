@@ -7,7 +7,7 @@ Tank::Tank( Orientation ori = Orientation::UP, qreal x=0, qreal y=0, const char*
     mOrientation(ori),
     mImage(path)
 {
-    mSpeed = 10; //pikseli po sekundi
+    mSpeed = 5; //pikseli po sekundi
     isMoving = false;
     isAlive = true;
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
@@ -69,6 +69,7 @@ int Tank::Speed()
 void Tank::setOrientation(Tank::Orientation ori)
 {
     mOrientation=ori;
+    setRotation(getAngleFromOrientation(ori));
 }
 
 Tank::Orientation Tank::getOrientation()
