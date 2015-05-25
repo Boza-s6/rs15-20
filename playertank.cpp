@@ -18,6 +18,7 @@ void PlayerTank::keyPressEvent(QKeyEvent *event)
 
     int key = event->key();
     switch (key) {
+   // Qt::key
     case Qt::Key_W:{
 
         setOrientation(Orientation::UP);
@@ -59,7 +60,7 @@ void PlayerTank::keyPressEvent(QKeyEvent *event)
         break;
     }
 
-    update();
+   // update();
     QGraphicsItem::keyPressEvent(event);
 
 }

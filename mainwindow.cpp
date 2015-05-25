@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_pPalette->setBrush(QPalette::Background,QBrush(*m_pPixmap));
     setPalette(*m_pPalette);
 
-    background = new GameWindow();
+
     //za test rezim
     //ui->btn_1player->click();
 }
@@ -42,6 +42,8 @@ void MainWindow::on_btn_exit_clicked()
 void MainWindow::on_btn_1player_clicked()
 {
     QWidget * tmp = this->centralWidget();
+    background = new GameWindow();
+
     setCentralWidget(background);
     background = tmp;
     background->setParent(0);
