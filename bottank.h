@@ -12,9 +12,9 @@ public:
 
     BotTank(qreal x, qreal y, Orientation ori);
     ~BotTank();
+    void move();
 public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;
-
 private:
 
     qreal mAngle;

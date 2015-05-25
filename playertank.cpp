@@ -76,10 +76,10 @@ void PlayerTank::advance(int step)
         }
     }
     if (this->x()<0 || this->x()>1000 || this->y()<0 || this->y()>600) {
-        setSpeed(-10);
+        setSpeed(-5);
     }
     else
-        setSpeed(10);
+        setSpeed(5);
 
 
 }
