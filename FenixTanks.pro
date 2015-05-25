@@ -42,7 +42,8 @@ FORMS    += mainwindow.ui
 
 QMAKE_CXXFLAGS += -std=c++11
 
-RESOURCES     = img_resource.qrc
+RESOURCES     = img_resource.qrc \
+    maps.qrc
 
 
 
