@@ -35,8 +35,8 @@ void BotTank::advance(int step)
 
     QList<QGraphicsItem *> Tanks = scene()->items();
 
-     qreal xp,yp;
-     qreal xb,yb;
+     qreal xp=0,yp=0;
+     qreal xb=0,yb=0;
 
     foreach (QGraphicsItem *item, Tanks) {
         if (item == this)

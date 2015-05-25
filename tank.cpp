@@ -69,6 +69,7 @@ int Tank::Speed()
 void Tank::setOrientation(Tank::Orientation ori)
 {
     mOrientation=ori;
+    setRotation(getAngleFromOrientation(ori));
 }
 
 Tank::Orientation Tank::getOrientation()

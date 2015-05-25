@@ -8,6 +8,7 @@
 #include <sstream>
 #include "brick.h"
 #include "solidbrick.h"
+#include "fenix.h"
 
 #define FIRST_MAP ":/maps/first.map"
 #define SECOND_MAP ":/maps/second.map"
@@ -25,7 +26,8 @@ namespace Map {
     enum BrickType{
         NO_BRICK = 0,
         BRICK = 1,
-        SOLID_BRICK = 2
+        SOLID_BRICK = 2,
+        FENIX = 3
     };
 
     void readMap(QGraphicsScene * scena, const char * map = FIRST_MAP);

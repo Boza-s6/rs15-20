@@ -16,7 +16,7 @@ QRectF Fenix::boundingRect() const
     return QRectF(0,0, mImage.width(), mImage.height());
 }
 
-void Fenix::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Fenix::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     int x = mImage.rect().width();
     int y = mImage.rect().height();
@@ -24,7 +24,7 @@ void Fenix::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->drawPixmap(-x/2,-y/2, mImage);
 }
 
-void Fenix::hitted(int damage)
+void Fenix::hitted(int)
 {
     scene()->removeItem(this);
     delete this;

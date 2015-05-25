@@ -33,6 +33,8 @@ void Map::readMap(QGraphicsScene *scena, const char *map)
                 break;
             case BrickType::SOLID_BRICK:
                 scena->addItem(new SolidBrick(positionX, positionY));// !!! Dok ne napravi SolidBrick kalsu
+            case BrickType::FENIX:
+                scena->addItem(new Fenix(positionX, positionY));
             default:
                 break;
             }
