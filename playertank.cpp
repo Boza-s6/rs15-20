@@ -13,58 +13,43 @@ PlayerTank::~PlayerTank()
 
 void PlayerTank::keyPressEvent(QKeyEvent *event)
 {
-
-
-
-
-
+    mPressed = true;
     int key = event->key();
-    switch (key) {
-   // Qt::key
-    case Qt::Key_W:{
+    if(key == mButton)
+        return;
 
+    mButton = (Qt::Key)key;
+
+
+    switch (key) {
+    case Qt::Key_W:
         setOrientation(Orientation::UP);
-        moveBy(0,-speed());
-        setRotation(0);
-    }
         break;
-    case Qt::Key_A:{
+    case Qt::Key_A:
         setOrientation(Orientation::LEFT);
-        moveBy(-speed(),0);
-        setRotation(-90);
-    }
         break;
-    case Qt::Key_D:{
+    case Qt::Key_D:
         setOrientation(Orientation::RIGHT);
-        moveBy(speed(),0);
-        setRotation(90);
-    }
         break;
-    case Qt::Key_S:{
+    case Qt::Key_S:
         setOrientation(Orientation::DOWN);
-        moveBy(0,speed());
-        setRotation(180);
-    }
         break;
-    case Qt::Key_Space:{
+    case Qt::Key_Space:
         qreal x=this->x();
         qreal y=this->y();
 
-
-
-
         Bullet *b=new Bullet(Tank::getOrientation(), QPointF(x,y) );
         scene()->addItem(b);
-    }
-        break;
-
-    default:
         break;
     }
 
-   // update();
-    QGraphicsItem::keyPressEvent(event);
+    //    QGraphicsItem::keyPressEvent(event);
 
+}
+
+void PlayerTank::keyReleaseEvent(QKeyEvent *)
+{
+    mPressed = false;
 }
 
 void PlayerTank::advance(int step)
@@ -72,15 +57,29 @@ void PlayerTank::advance(int step)
     if (!step)
         return;
 
-
+    if(mPressed){
+        switch (mButton) {
+        case Qt::Key_W:
+            moveBy(0, -speed());
+            break;
+        case Qt::Key_S:
+            moveBy(0, speed());
+            break;
+        case Qt::Key_A:
+            moveBy(-speed(), 0);
+            break;
+        case Qt::Key_D:
+            moveBy(speed(), 0);
+            break;
+        default:
+            break;
+        }
+    }
     if (this->x()<0 || this->x()>1000 || this->y()<0 || this->y()>600) {
-<<<<<<< HEAD
-=======
->>>>>>> parent of ef94f62... Izmene u implementaciji bottank klase.
-        setSpeed(-10);
+        setSpeed(-5);
     }
     else
-        setSpeed(10);
+        setSpeed(5);
 
 
 }
