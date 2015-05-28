@@ -67,10 +67,10 @@ GameWindow::GameWindow( QWidget *parent)
     QObject::connect(mTimer, SIGNAL(timeout()), scene, SLOT(advance()));
     mTimer->start(30);
 
-
+/*
     view->setFocus();
     scene->setFocus();
-    scene->setFocusItem(player);
+    scene->setFocusItem(player);*/
 
 }
 
