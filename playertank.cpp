@@ -79,12 +79,13 @@ void PlayerTank::advance(int step)
     }
     else
        setSpeed(10);
+
 =======
+>>>>>>> parent of ef94f62... Izmene u implementaciji bottank klase.
         setSpeed(-10);
     }
     else
         setSpeed(10);
->>>>>>> parent of ef94f62... Izmene u implementaciji bottank klase.
 
 
 }
