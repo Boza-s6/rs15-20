@@ -75,11 +75,6 @@ void PlayerTank::advance(int step)
 
     if (this->x()<0 || this->x()>1000 || this->y()<0 || this->y()>600) {
 <<<<<<< HEAD
-       setSpeed(-10);
-    }
-    else
-       setSpeed(10);
-
 =======
 >>>>>>> parent of ef94f62... Izmene u implementaciji bottank klase.
         setSpeed(-10);
