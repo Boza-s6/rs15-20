@@ -6,6 +6,7 @@
 #include "bullet.h"
 #include "bottank.h"
 #include "playertank.h"
+#include "map.h"
 
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent)
@@ -41,6 +42,7 @@ GameWindow::GameWindow( QWidget *parent)
     //butik je otvoren!!!
 
 
+    Map::readMap(scene);
 
     BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
     scene->addItem(bot1);
