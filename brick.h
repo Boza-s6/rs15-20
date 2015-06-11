@@ -13,7 +13,7 @@ class Brick : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    Brick(qreal x, qreal y, const char * = ":/img/brick.png");
+    Brick(qreal x, qreal y, const char * = ":/img/img/brick.png");
     virtual ~Brick();
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter,

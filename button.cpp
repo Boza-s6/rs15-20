@@ -3,8 +3,8 @@
 #include <QPainter>
 Button::Button(const char *text="DUGME", qreal x=0, qreal y=0)
     : mText(text),
-      mImage(":/img/button.png"),
-      mImagePressed(":/img/button_pressed.png")
+      mImage(":/imgimg//button.png"),
+      mImagePressed(":/img/img/button_pressed.png")
 {
     setPos(x, y);
     mWidth = mImage.width();

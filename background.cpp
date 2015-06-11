@@ -1,7 +1,7 @@
 #include "background.h"
 
 Background::Background()
-    :mImage(":/img/bg_pattern.png")
+    :mImage(":/img/img/bg_pattern.png")
 {
 }
 

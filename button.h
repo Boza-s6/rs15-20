@@ -26,11 +26,11 @@ signals:
     void clicked();
 
 private:
-    QString mText; // text koji ce se prikazivati na dugmetu
-//    qreal mX, mY;
-    qreal mWidth, mHeight; // sirina i visina dugmeta
-    QPixmap mImage; // slika dugmeta
-    QPixmap mImagePressed; // slika pritisnutog dugmeta
+    QString mText;          // text koji ce se prikazivati na dugmetu
+                            // qreal mX, mY;
+    qreal mWidth, mHeight;  // sirina i visina dugmeta
+    QPixmap mImage;         // slika dugmeta
+    QPixmap mImagePressed;  // slika pritisnutog dugmeta
     bool pressed;
 };
 

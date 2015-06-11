@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_pPalette	= new QPalette();
-    m_pPixmap	= new QPixmap(":/img/bg.png");
+    m_pPixmap	= new QPixmap(":/img/img/bg.png");
 
     m_pPalette->setBrush(QPalette::Background,QBrush(*m_pPixmap));
     setPalette(*m_pPalette);

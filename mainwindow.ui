@@ -33,8 +33,8 @@
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="img_resource.qrc">
-        <normaloff>:/img/exit.jpg</normaloff>:/img/exit.jpg</iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/img/img/exit.jpg</normaloff>:/img/img/exit.jpg</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -104,8 +104,8 @@
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="img_resource.qrc">
-        <normaloff>:/img/player1.jpg</normaloff>:/img/player1.jpg</iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/img/img/player1.jpg</normaloff>:/img/img/player1.jpg</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -143,8 +143,8 @@
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="img_resource.qrc">
-        <normaloff>:/img/player2.jpg</normaloff>:/img/player2.jpg</iconset>
+       <iconset resource="res.qrc">
+        <normaloff>:/img/img/player2.jpg</normaloff>:/img/img/player2.jpg</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -159,7 +159,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="img_resource.qrc"/>
+  <include location="res.qrc"/>
  </resources>
  <connections/>
  <slots>

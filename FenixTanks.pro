@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,44 +14,36 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    gamewindow.cpp \
-    tank.cpp \
-    bottank.cpp \
-    bullet.cpp \
-    playertank.cpp \
-    background.cpp \
-    button.cpp \
-    brick.cpp \
-    specialgraphicsitem.cpp \
-    map.cpp \
-    solidbrick.cpp \
-    fenix.cpp
+           mainwindow.cpp \
+           gamewindow.cpp \
+           tank.cpp \
+           bottank.cpp \
+           bullet.cpp \
+           playertank.cpp \
+           background.cpp \
+           button.cpp \
+           brick.cpp \
+           specialgraphicsitem.cpp \
+           map.cpp \
+           solidbrick.cpp \
+           fenix.cpp
 
 HEADERS  += mainwindow.h \
-    gamewindow.h \
-    tank.h \
-    bottank.h \
-    bullet.h \
-    playertank.h \
-    background.h \
-    button.h \
-    brick.h \
-    specialgraphicsitem.h \
-    solidbrick.h \
-    map.h \
-    fenix.h
+            gamewindow.h \
+            tank.h \
+            bottank.h \
+            bullet.h \
+            playertank.h \
+            background.h \
+            button.h \
+            brick.h \
+            specialgraphicsitem.h \
+            solidbrick.h \
+            map.h \
+            fenix.h
 
 FORMS    += mainwindow.ui
 
 QMAKE_CXXFLAGS += -std=c++11
 
-RESOURCES     = img_resource.qrc \
-    maps.qrc
-
-
-
-
-#RESOURCES += img/*.png\
-#             img/*.jpeg\
-#             img/*.jpg\
+RESOURCES     += res.qrc

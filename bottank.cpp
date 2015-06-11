@@ -16,7 +16,7 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN): Tank(ori, x,y, ":/img/player2_tank.png")
+BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN): Tank(ori, x,y, ":/img/img/player2_tank.png")
 {
     setRotation(getAngleFromOrientation(ori));
 

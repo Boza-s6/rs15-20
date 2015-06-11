@@ -2,9 +2,10 @@
 #include <QPainter>
 #include <iostream>
 #include <QKeyEvent>
+#include <QtMultimedia>
 
 Bullet::Bullet(Tank::Orientation direction, QPointF point)
-    : mImage(":/img/metak.png"), mOrientation(direction),
+    : mImage(":/img/img/metak.png"), mOrientation(direction),
       mPoint(point)
 {
     mSpeed = 10; //pikslea po sek
@@ -12,6 +13,10 @@ Bullet::Bullet(Tank::Orientation direction, QPointF point)
     mapFromScene(mPoint); //mozda ne treba ovo
     setPos(point);
 
+    // play background music
+    QMediaPlayer * music = new QMediaPlayer();
+    music->setMedia(QUrl("qrc:/sounds/sounds/bullet.mp3"));
+    music->play();
 }
 
 Bullet::~Bullet()

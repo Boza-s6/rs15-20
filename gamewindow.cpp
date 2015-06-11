@@ -24,7 +24,7 @@ GameWindow::GameWindow( QWidget *parent)
 
 
     view->setRenderHint(QPainter::Antialiasing);
-    view->setBackgroundBrush(QPixmap(":/img/bg_pattern.png"));
+    view->setBackgroundBrush(QPixmap(":/img/img/bg_pattern.png"));
     //! [4] //! [5]
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
