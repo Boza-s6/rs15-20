@@ -10,17 +10,6 @@
 #include "solidbrick.h"
 #include "fenix.h"
 
-#define FIRST_MAP ":/maps/maps/first.map"
-#define SECOND_MAP ":/maps/maps/second.map"
-#define THIRD_MAP ":/maps/maps/third.map"
-
-static const int NUM_LINES = 14, NUM_BRICKS_IN_LINE = 20;
-static const qreal BRICK_SIZE = 50.0;
-//    static const char
-//        *FIRST = ":/maps/maps/first.map",
-//        *SECOND = ":/maps/maps/second.map",
-//        *THIRD = ":/maps/maps/third.map"
-//    ;
 
 enum BrickType{
     NO_BRICK = 0,
@@ -30,7 +19,7 @@ enum BrickType{
 };
 namespace Map {
 
-    void readMap(QGraphicsScene * scena, const char * map = FIRST_MAP);
+    void readMap(QGraphicsScene * scena, const char * map = ":/maps/first.map");
 }
 
 #endif // MAP_H

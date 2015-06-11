@@ -7,6 +7,8 @@
 #include "bottank.h"
 #include "playertank.h"
 #include "map.h"
+#include <QString>
+#include <QDir>
 
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent)
@@ -17,7 +19,7 @@ GameWindow::GameWindow( QWidget *parent)
     this->setLayout(layout);
 
     view  = new QGraphicsView();
-    scene = new QGraphicsScene(view);
+    scene = new QGraphicsScene(0, 0, 1000, 700, view);
 
     this->layout()->addWidget(view);
     view->setScene(scene);
@@ -36,13 +38,17 @@ GameWindow::GameWindow( QWidget *parent)
 
     QPen olovka(Qt::white);
     olovka.setWidth(5);
-    scene->addRect(0,0,1000,600, olovka);
+    //scene->addRect(0,0,1000,600, olovka);
 
 
     //butik je otvoren!!!
 
 
-    Map::readMap(scene);
+    Map::readMap(scene, ":/maps/maps/first.map");
+    QString path(QDir::currentPath());
+    std::string path2(path.toStdString());
+    std::cout << path2 << std::endl;
+
 
     BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
     scene->addItem(bot1);

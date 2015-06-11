@@ -15,9 +15,10 @@ void PlayerTank::keyPressEvent(QKeyEvent *event)
 {
     mPressed = true;
     int key = event->key();
+    /*
     if(key == mButton)
         return;
-
+*/
     mButton = (Qt::Key)key;
 
 

@@ -19,6 +19,7 @@
         <file>img/player2_tank.png</file>
         <file>img/stone.png</file>
         <file>img/tank_icon.png</file>
+        <file>img/fenix.png</file>
     </qresource>
     <qresource prefix="/maps">
         <file>maps/first.map</file>
