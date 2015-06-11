@@ -3,7 +3,7 @@
 #include <QPainter>
 Button::Button(const char *text="DUGME", qreal x=0, qreal y=0)
     : mText(text),
-      mImage(":/imgimg//button.png"),
+      mImage(":/img/img//button.png"),
       mImagePressed(":/img/img/button_pressed.png")
 {
     setPos(x, y);
