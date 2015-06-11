@@ -13,7 +13,7 @@ Bullet::Bullet(Tank::Orientation direction, QPointF point)
     mapFromScene(mPoint); //mozda ne treba ovo
     setPos(point);
 
-    // play background music
+    //Zvuk metka bullet.mp3 svaki put kad se ispali novi metak
     QMediaPlayer * music = new QMediaPlayer();
     music->setMedia(QUrl("qrc:/sounds/sounds/bullet.mp3"));
     music->play();
