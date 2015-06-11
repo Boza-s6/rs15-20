@@ -1,8 +1,9 @@
 #ifndef TANK_H
 #define TANK_H
 #include <QGraphicsItem>
+#include "specialqgraphicspixmapitem.h"
 
-class Tank : public QGraphicsItem
+class Tank : public  SpecialQGraphicsPixmapItem
 {
 
 public:
@@ -12,9 +13,6 @@ public:
 
     Tank( Orientation ori, qreal x, qreal y, const char * path);
     virtual ~Tank()=0;
-    virtual QRectF boundingRect() const Q_DECL_OVERRIDE;
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-               QWidget *widget) Q_DECL_OVERRIDE;
    // virtual void keyPressEvent(QKeyEvent * event);
     int getAngleFromOrientation(Orientation ori);
     int Speed();
@@ -23,6 +21,10 @@ public:
     qreal speed() const;
     void setSpeed(const qreal &speed);
 
+    void hitted(int damage) Q_DECL_OVERRIDE;
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QRectF boundingRect() const Q_DECL_OVERRIDE;
 public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;
 
@@ -30,7 +32,6 @@ private:
 
     Orientation mOrientation;
     qreal mSpeed;
-    QPixmap mImage;
 
     bool isMoving, isAlive;
 

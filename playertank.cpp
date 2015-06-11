@@ -1,7 +1,8 @@
 #include "playertank.h"
 #include <QKeyEvent>
 #include "bullet.h"
-PlayerTank::PlayerTank(qreal x, qreal y,Tank::Orientation ori=Orientation::UP ): Tank(ori, x,y, ":/img/img/player1_tank.png")
+PlayerTank::PlayerTank(qreal x, qreal y,Tank::Orientation ori=Orientation::UP )
+    : Tank(ori, x,y, ":/img/img/player1_tank.png")
 {
     setRotation(getAngleFromOrientation(ori));
 }

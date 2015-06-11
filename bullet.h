@@ -4,6 +4,8 @@
 #include <QObject>
 #include "tank.h"
 #include <QGraphicsObject>
+#include <QtMultimedia>
+#include "explosion.h"
 
 class Bullet : public QGraphicsObject
 {
@@ -22,10 +24,15 @@ public slots:
     void advance(int step) Q_DECL_OVERRIDE;
 
 private:
+    void destroySelf();
+
+
     QPixmap mImage;
     Tank::Orientation mOrientation;
     QPointF mPoint;
     qreal mSpeed;
+    QMediaPlayer * mMusic;
+
 };
 
 #endif // BULLET_H

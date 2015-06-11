@@ -1,21 +1,23 @@
 #ifndef FENIX_H
 #define FENIX_H
-#include "specialgraphicsitem.h"
-#include <QPainter>
-#include <QGraphicsScene>
-class Fenix : public SpecialGraphicsItem
+
+#include "specialqgraphicspixmapitem.h"
+#include <QObject>
+
+class Fenix : public SpecialQGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
+    Fenix();
     Fenix(qreal x, qreal y);
     ~Fenix();
-    QRectF boundingRect() const Q_DECL_OVERRIDE;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)  Q_DECL_OVERRIDE;
+    virtual void hitted(int damage) Q_DECL_OVERRIDE;
 
-public slots:
-    void hitted(int) Q_DECL_OVERRIDE;
+signals:
+    void fenixDestroyed();
+
 private:
-    QPixmap mImage;
-
+    int mHealth;
 };
 
 #endif // FENIX_H

@@ -1,33 +1,30 @@
 #include "fenix.h"
 
+Fenix::Fenix()
+    :SpecialQGraphicsPixmapItem(), mHealth(300)
+{
+
+}
 
 Fenix::Fenix(qreal x, qreal y)
+    : SpecialQGraphicsPixmapItem(":/img/img/fenix.png", x, y), mHealth(300)
 {
-    setPos(x,y);
+
 }
 
 Fenix::~Fenix()
 {
 
-
 }
 
-QRectF Fenix::boundingRect() const
+void Fenix::hitted(int damage)
 {
-    return QRectF(0,0, mImage.width(), mImage.height());
-}
-
-void Fenix::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
-{
-    int x = mImage.rect().width();
-    int y = mImage.rect().height();
-
-    painter->drawPixmap(-x/2,-y/2, mImage);
-}
-
-void Fenix::hitted(int)
-{
-    scene()->removeItem(this);
-    delete this;
+    mHealth -= damage;
+    if(mHealth <= 0)
+    {
+        scene()->removeItem(this);
+        delete this;
+        emit fenixDestroyed();
+    }
 }
 

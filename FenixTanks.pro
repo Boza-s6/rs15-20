@@ -23,10 +23,11 @@ SOURCES += main.cpp\
            background.cpp \
            button.cpp \
            brick.cpp \
-           specialgraphicsitem.cpp \
            map.cpp \
            solidbrick.cpp \
-           fenix.cpp
+           fenix.cpp \
+    specialqgraphicspixmapitem.cpp \
+    explosion.cpp
 
 HEADERS  += mainwindow.h \
             gamewindow.h \
@@ -37,10 +38,11 @@ HEADERS  += mainwindow.h \
             background.h \
             button.h \
             brick.h \
-            specialgraphicsitem.h \
             solidbrick.h \
             map.h \
-            fenix.h
+            fenix.h \
+    specialqgraphicspixmapitem.h \
+    explosion.h
 
 FORMS    += mainwindow.ui
 

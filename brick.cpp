@@ -1,40 +1,31 @@
 #include "brick.h"
 
-Brick::Brick(qreal x, qreal y, const char * path):
-    mImage(path),
-    mHealth(100)
+Brick::Brick(qreal x, qreal y)
+    :SpecialQGraphicsPixmapItem(":/img/img/brick.png", x, y), mHealth(100)
 {
-    setPos(x, y);
-    mWidth = mImage.width();
-    mHeight = mImage.height();
+
+}
+Brick::Brick(const char *slika, qreal x, qreal y)
+    :SpecialQGraphicsPixmapItem(slika, x, y), mHealth(100)
+{
+
+}
+Brick::Brick()
+    :SpecialQGraphicsPixmapItem(), mHealth(100)
+{
 }
 
 Brick::~Brick()
 {
-}
 
-QRectF Brick::boundingRect() const
-{
-    return QRectF(0, 0, mWidth, mHeight);
-}
-
-void Brick::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
-{
-    painter->drawRect(boundingRect()); // proba!!!!!
-
-    painter->drawPixmap(boundingRect().topLeft(), mImage);
-}
-
-void Brick::advance(int phase)
-{
-    if(!phase) return;
 }
 
 void Brick::hitted(int damage)
 {
     mHealth -= damage;
-    if(mHealth == 0)
-    {
-        scene()->removeItem(this);
+    if(mHealth <= 0){
+        this->scene()->removeItem(this);
+        delete this;
     }
 }
+

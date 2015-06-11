@@ -75,6 +75,8 @@ GameWindow::GameWindow( QWidget *parent)
     scene->setFocus();
     scene->setFocusItem(player);*/
 
+    view->setFocus();
+
 }
 
 GameWindow::~GameWindow()

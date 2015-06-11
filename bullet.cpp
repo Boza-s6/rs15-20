@@ -2,7 +2,7 @@
 #include <QPainter>
 #include <iostream>
 #include <QKeyEvent>
-#include <QtMultimedia>
+
 
 Bullet::Bullet(Tank::Orientation direction, QPointF point)
     : mImage(":/img/img/metak.png"), mOrientation(direction),
@@ -14,14 +14,14 @@ Bullet::Bullet(Tank::Orientation direction, QPointF point)
     setPos(point);
 
     //Zvuk metka bullet.mp3 svaki put kad se ispali novi metak
-    QMediaPlayer * music = new QMediaPlayer();
-    music->setMedia(QUrl("qrc:/sounds/sounds/bullet.mp3"));
-    music->play();
+    mMusic = new QMediaPlayer();
+    mMusic->setMedia(QUrl("qrc:/sounds/sounds/bullet.mp3"));
+    mMusic->play();
 }
 
 Bullet::~Bullet()
 {
-
+    delete mMusic;
 }
 
 QRectF Bullet::boundingRect() const
@@ -47,32 +47,47 @@ void Bullet::advance(int step)
 
     switch (mOrientation) {
 
-    case Tank::Orientation::UP:{
-        moveBy(0,-mSpeed);
-        setRotation(0);
+        case Tank::Orientation::UP:{
+            moveBy(0,-mSpeed);
+            setRotation(0);
+        }
+            break;
+        case Tank::Orientation::LEFT:{
+            moveBy(-mSpeed,0);
+            setRotation(-90);}
+            break;
+        case Tank::Orientation::RIGHT:{
+            moveBy(mSpeed,0);
+            setRotation(90);}
+            break;
+        case Tank::Orientation::DOWN:{
+            moveBy(0,mSpeed);
+            setRotation(180);}
+            break;
     }
-        break;
-    case Tank::Orientation::LEFT:{
-        moveBy(-mSpeed,0);
-        setRotation(-90);}
-        break;
-    case Tank::Orientation::RIGHT:{
-        moveBy(mSpeed,0);
-        setRotation(90);}
-        break;
-    case Tank::Orientation::DOWN:{
-        moveBy(0,mSpeed);
-        setRotation(180);}
-        break;
+
+    bool isColliding = this->collidingItems().size()==0 ? false : true;
+
+    if(isColliding){
+        qreal x=this->x();
+        qreal y=this->y();
+        scene()->addItem(new Explosion(QPointF(x,y)));
+        destroySelf();
     }
 
     if (this->x()<0 || this->x()>1000) {
-        delete this;
+        destroySelf();
     }
-    if(this->y()<0 || this->y()>600){
-        delete this;
-
+    if(this->y()<0 || this->y()>700){
+        destroySelf();
     }
 }
+
+void Bullet::destroySelf()
+{
+    scene()->removeItem(this);
+    delete this;
+}
+
 
 
