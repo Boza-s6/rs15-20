@@ -9,6 +9,7 @@ Fenix::Fenix(qreal x, qreal y)
 Fenix::~Fenix()
 {
 
+
 }
 
 QRectF Fenix::boundingRect() const

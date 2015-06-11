@@ -11,7 +11,7 @@
         <file>img/button.png</file>
         <file>img/button_clicked.png</file>
         <file>img/exit.jpg</file>
-        <file>img/Explosion.png</file>
+        <file>img/explosion.png</file>
         <file>img/metak.png</file>
         <file>img/player1.jpg</file>
         <file>img/player1_tank.png</file>
@@ -20,8 +20,5 @@
         <file>img/stone.png</file>
         <file>img/tank_icon.png</file>
         <file>img/fenix.png</file>
-    </qresource>
-    <qresource prefix="/maps">
-        <file>maps/first.map</file>
     </qresource>
 </RCC>

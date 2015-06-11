@@ -44,10 +44,7 @@ GameWindow::GameWindow( QWidget *parent)
     //butik je otvoren!!!
 
 
-    Map::readMap(scene, ":/maps/maps/first.map");
-    QString path(QDir::currentPath());
-    std::string path2(path.toStdString());
-    std::cout << path2 << std::endl;
+    Map::readMap(scene, "maps/first.map");
 
 
     BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
