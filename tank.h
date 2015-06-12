@@ -26,6 +26,7 @@ public:
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     virtual void advance(int step) Q_DECL_OVERRIDE;
     bool hitLeft,hitRight,hitBottom,hitUp;
+
 private:
     Orientation mOrientation;
     int mSpeed;

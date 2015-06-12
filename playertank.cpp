@@ -3,6 +3,7 @@
 #include <iostream>
 #include "bullet.h"
 #include "solidbrick.h"
+#include "fenix.h"
 PlayerTank::PlayerTank(qreal x, qreal y,Tank::Orientation ori=Orientation::UP )
     : Tank(ori, x,y, ":/img/img/player1_tank.png"),
       mButtonsPressed(), mTimeOfLastBullet()
@@ -43,12 +44,6 @@ void PlayerTank::advance(int step)
     auto list = collidingItems();
     bool isColliding = list.size()==0 ? false : true;
 
-    bool hitSolidBrick = false;
-    for(auto item : list)
-        if(dynamic_cast<SolidBrick*>(item)){
-            hitSolidBrick = true;
-            break;
-        }
 
     //vracamo vrednosti na default
     hitLeft=false;
@@ -56,8 +51,15 @@ void PlayerTank::advance(int step)
     hitBottom=false;
     hitUp=false;
 
-    //ako je udario u zid podesavamo odredjeni bool
-    if(isColliding && hitSolidBrick){
+
+    //npr ako tenk udari gore u prvom prolazu orijentacija ce da bude gore i zabranice se taster gore
+    // u drugom prolazu kad se taster za levo stisne orijentacija ce da se promeni a ovo ce da prijavi
+    // koliziju sa levom stranom, a to nije tacno!!!
+
+    //ako je udario podesavamo odredjeni bool
+
+    if(isColliding){
+
         switch (getOrientation()) {
         case Orientation::UP:
             hitUp=true;
