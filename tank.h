@@ -25,7 +25,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     virtual void advance(int step) Q_DECL_OVERRIDE;
-
+    bool hitLeft,hitRight,hitBottom,hitUp;
 private:
     Orientation mOrientation;
     int mSpeed;

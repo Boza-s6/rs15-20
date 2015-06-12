@@ -2,6 +2,7 @@
 #include <QKeyEvent>
 #include <iostream>
 #include "bullet.h"
+#include "solidbrick.h"
 PlayerTank::PlayerTank(qreal x, qreal y,Tank::Orientation ori=Orientation::UP )
     : Tank(ori, x,y, ":/img/img/player1_tank.png"),
       mButtonsPressed(), mTimeOfLastBullet()
@@ -39,6 +40,43 @@ void PlayerTank::advance(int step)
         multipeButtonsPressed();
     }
 
+    auto list = collidingItems();
+    bool isColliding = list.size()==0 ? false : true;
+
+    bool hitSolidBrick = false;
+    for(auto item : list)
+        if(dynamic_cast<SolidBrick*>(item)){
+            hitSolidBrick = true;
+            break;
+        }
+
+    //vracamo vrednosti na default
+    hitLeft=false;
+    hitRight=false;
+    hitBottom=false;
+    hitUp=false;
+
+    //ako je udario u zid podesavamo odredjeni bool
+    if(isColliding && hitSolidBrick){
+        switch (getOrientation()) {
+        case Orientation::UP:
+            hitUp=true;
+            break;
+        case Orientation::DOWN:
+            hitBottom=true;
+            break;
+        case Orientation::LEFT:
+            hitLeft=true;
+            break;
+        case Orientation::RIGHT:
+            hitRight=true;
+            break;
+        default:
+            break;
+        }
+    }
+
+
 }
 
 void PlayerTank::multipeButtonsPressed()
@@ -72,43 +110,52 @@ void PlayerTank::singleButtonPressed()
 
 void PlayerTank::processKey(const Qt::Key & button)
 {
+    //proveravamo da li je udario u zid i ako nije taster moze da se obradi
     switch (button) {
-        case Qt::Key_W:
+    case Qt::Key_W:
+        if(!hitUp){
             setOrientation(Orientation::UP);
             moveBy(0, -speed());
-            break;
-        case Qt::Key_S:
+        }
+        break;
+    case Qt::Key_S:
+        if(!hitBottom){
             setOrientation(Orientation::DOWN);
             moveBy(0, speed());
-            break;
-        case Qt::Key_A:
+        }
+        break;
+    case Qt::Key_A:
+        if(!hitLeft){
             setOrientation(Orientation::LEFT);
             moveBy(-speed(), 0);
-            break;
-        case Qt::Key_D:
+        }
+        break;
+    case Qt::Key_D:
+        if(!hitRight){
             setOrientation(Orientation::RIGHT);
             moveBy(speed(), 0);
-            break;
-        case Qt::Key_Space:
-            //ako prvi put udjemo ovde moramo da budemo sigurni
-            // da smo pokrenuli tajmer
-            static bool firstTime = true;
-            if(firstTime){
-                mTimeOfLastBullet.start();
-                mTimeOfLastBullet.addMSecs(200);
-                firstTime = false;
-            }
+        }
+        break;
+    case Qt::Key_Space:
+        //ako prvi put udjemo ovde moramo da budemo sigurni
+        // da smo pokrenuli tajmer
+        static bool firstTime = true;
+        if(firstTime){
+            mTimeOfLastBullet.start();
+            mTimeOfLastBullet.addMSecs(200);
+            firstTime = false;
+        }
 
-            if(mTimeOfLastBullet.elapsed() >= BULLET_TIME_BETWEEN_FIRE_MILISEC){
-                qreal x=this->x();
-                qreal y=this->y();
+        if(mTimeOfLastBullet.elapsed() >= BULLET_TIME_BETWEEN_FIRE_MILISEC){
+            qreal x=this->x();
+            qreal y=this->y();
 
-                Bullet *b=new Bullet(getOrientation(), QPointF(x,y) );
-                scene()->addItem(b);
-                mTimeOfLastBullet.restart();
-            }
-            break;
-        default:
-            break;
+            Bullet *b=new Bullet(getOrientation(), QPointF(x,y) );
+            scene()->addItem(b);
+            mTimeOfLastBullet.restart();
+        }
+        break;
+    default:
+        break;
     }
 }

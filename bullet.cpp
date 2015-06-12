@@ -83,13 +83,6 @@ void Bullet::advance(int step)
         scene()->addItem(new Explosion(QPointF(x,y)));
         destroySelf();
     }
-
-    if (this->x()<0 || this->x()>SCENE_WIDTH) {
-        destroySelf();
-    }
-    if(this->y()<0 || this->y()>SCENE_HEIGHT){
-        destroySelf();
-    }
 }
 
 void Bullet::destroySelf()
