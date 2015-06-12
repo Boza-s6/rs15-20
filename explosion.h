@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QPainter>
 #include <QObject>
+#include "constants.h"
 
 class Explosion : public QGraphicsObject
 {
@@ -12,17 +13,18 @@ class Explosion : public QGraphicsObject
 public:
     Explosion(QPointF point);
     virtual ~Explosion();
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *,
                QWidget *) Q_DECL_OVERRIDE;
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void advance(int phase) Q_DECL_OVERRIDE;
 
 public slots:
-    void onTimerDestroySelf();
+    void destroySelf();
 
 private:
     QPixmap mImage;
-    QTimer *mTimer;
+    QTimer mTimer;
     bool isDone;
 };
 

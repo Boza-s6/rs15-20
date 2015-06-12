@@ -1,89 +1,71 @@
 #include "gamewindow.h"
-#include <QGraphicsRectItem>
-#include <QVBoxLayout>
-#include <QPixmap>
-#include <QTimer>
-#include "bullet.h"
+#include <QLayout>
+#include "map.h"
 #include "bottank.h"
 #include "playertank.h"
-#include "map.h"
-#include <QString>
-#include <QDir>
+#include <QTimer>
 
 GameWindow::GameWindow( QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), mTimer(),
+      mView(new QGraphicsView),
+      mScene(new QGraphicsScene(0, 0, SCENE_WIDTH, SCENE_HEIGHT, mView))
 {
 
-    auto * layout= new QVBoxLayout();
+    auto layout= new QVBoxLayout();
     layout->setMargin(0);
     this->setLayout(layout);
 
-    view  = new QGraphicsView();
-    scene = new QGraphicsScene(0, 0, 1000, 700, view);
-
-    this->layout()->addWidget(view);
-    view->setScene(scene);
+    this->layout()->addWidget(mView);
+    mView->setScene(mScene);
 
 
-    view->setRenderHint(QPainter::Antialiasing);
-    view->setBackgroundBrush(QPixmap(":/img/img/bg_pattern.png"));
-    //! [4] //! [5]
-    view->setCacheMode(QGraphicsView::CacheBackground);
-    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-    view->setDragMode(QGraphicsView::ScrollHandDrag);
-    //! [5] //! [6]
-    view->setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Fenix Tanks"));
-    view->resize(1050, 750);
-    view->show();
-
-    QPen olovka(Qt::white);
-    olovka.setWidth(5);
-    //scene->addRect(0,0,1000,600, olovka);
 
 
+    mView->setRenderHint(QPainter::Antialiasing);
+    mView->setBackgroundBrush(QPixmap(":/img/img/bg_pattern.png"));
+
+    mView->setCacheMode(QGraphicsView::CacheBackground);
+    mView->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    mView->setDragMode(QGraphicsView::ScrollHandDrag);
+
+    mView->setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Fenix Tanks"));
+    mView->resize(1050, 750);
+    mView->show();
+
+    init();
     //butik je otvoren!!!
 
+    Map::readMap(mScene, "maps/first.map");
 
-    Map::readMap(scene, "maps/first.map");
+    QObject::connect(&mTimer, SIGNAL(timeout()), mScene, SLOT(advance()));
+    mTimer.start(30);
 
-
-    BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
-    scene->addItem(bot1);
-
-    BotTank *bot2 = new BotTank( 1000,0, Tank::Orientation::DOWN);
-    scene->addItem(bot2);
-    BotTank *bot3 = new BotTank( 1000,600, Tank::Orientation::UP);
-    scene->addItem(bot3);
-    BotTank *bot4 = new BotTank( 0,600, Tank::Orientation::UP);
-    scene->addItem(bot4);
-
-
-    PlayerTank *player = new PlayerTank( 500,300, Tank::Orientation::LEFT);
-    player->setFocus();
-    scene->addItem(player);
-
-    /*
-    Bullet *b=new Bullet(Tank::Orientation::LEFT, QPointF(0,0) );
-    scene->addItem(b);
-*/
-    mTimer = new QTimer(this);
-    QObject::connect(mTimer, SIGNAL(timeout()), scene, SLOT(advance()));
-    mTimer->start(30);
-
-/*
-    view->setFocus();
-    scene->setFocus();
-    scene->setFocusItem(player);*/
-
-    view->setFocus();
+    mView->setFocus();
 
 }
 
+
 GameWindow::~GameWindow()
 {
-    delete mTimer;
-    delete scene;
-    delete view;
+    delete mScene;
+    delete mView;
+}
+
+void GameWindow::init()
+{
+    BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
+    mScene->addItem(bot1);
+
+    BotTank *bot2 = new BotTank( 900,0, Tank::Orientation::DOWN);
+    mScene->addItem(bot2);
+    BotTank *bot3 = new BotTank( 900,600, Tank::Orientation::UP);
+    mScene->addItem(bot3);
+    BotTank *bot4 = new BotTank( 0,600, Tank::Orientation::UP);
+    mScene->addItem(bot4);
+
+    PlayerTank *player = new PlayerTank( 500,300, Tank::Orientation::LEFT);
+    player->setFocus();
+    mScene->addItem(player);
 }
 
 

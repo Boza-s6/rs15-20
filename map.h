@@ -9,6 +9,7 @@
 #include "brick.h"
 #include "solidbrick.h"
 #include "fenix.h"
+#include "constants.h"
 
 
 enum BrickType{

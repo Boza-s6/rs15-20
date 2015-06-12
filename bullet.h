@@ -6,6 +6,8 @@
 #include <QGraphicsObject>
 #include <QtMultimedia>
 #include "explosion.h"
+#include "constants.h"
+
 
 class Bullet : public QGraphicsObject
 {

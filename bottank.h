@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include "tank.h"
+#include "constants.h"
 
 class BotTank: public Tank
 {

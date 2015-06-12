@@ -10,6 +10,7 @@
 #include <QGraphicsPixmapItem>
 #include "tank.h"
 #include <QTimer>
+#include "constants.h"
 
 class GameWindow : public QWidget
 {
@@ -17,13 +18,13 @@ public:
     GameWindow(QWidget *parent = 0);
     ~GameWindow();
 
-
-
 private:
-    QGraphicsScene * scene;
-    QGraphicsView  * view;
-    int sceneWidth;
-    QTimer *mTimer;
+    void init();
+private:
+    QTimer mTimer;
+    QGraphicsView  * mView;
+    QGraphicsScene * mScene;
+
 
 
 //    std::vector<Tank*> tanks;

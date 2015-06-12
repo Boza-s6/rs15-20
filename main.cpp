@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     //Pustanje pozadinske muzike
     QMediaPlayer * music = new QMediaPlayer();
-    music->setMedia(QUrl("qrc:/sounds/sounds/heavy_wind.mp3"));  //QUrl("qrc:/sounds/sounds/igraj.mp3") - za motivaciju xD
+    music->setMedia(QUrl("qrc:/sounds/sounds/igraj.mp3"));  //QUrl("qrc:/sounds/sounds/igraj.mp3") - za motivaciju xD
     music->play();
 
     return a.exec();

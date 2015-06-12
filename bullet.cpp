@@ -2,13 +2,13 @@
 #include <QPainter>
 #include <iostream>
 #include <QKeyEvent>
+#include <typeinfo>
 
 
 Bullet::Bullet(Tank::Orientation direction, QPointF point)
     : mImage(":/img/img/metak.png"), mOrientation(direction),
-      mPoint(point)
+      mPoint(point), mSpeed(BULLET_SPEED)
 {
-    mSpeed = 10; //pikslea po sek
     setFlags(QGraphicsItem::ItemIsMovable);
     mapFromScene(mPoint); //mozda ne treba ovo
     setPos(point);
@@ -66,9 +66,18 @@ void Bullet::advance(int step)
             break;
     }
 
-    bool isColliding = this->collidingItems().size()==0 ? false : true;
+    auto list = collidingItems();
+    bool isColliding = list.size()==0 ? false : true;
 
-    if(isColliding){
+    bool oneIsNotExplosion = false;
+    for(auto item : list)
+        if(typeid(item) != typeid(Explosion)){
+            oneIsNotExplosion = true;
+            break;
+        }
+
+    //ako se sudario sa necim i ako to nesto nije Explosion
+    if(isColliding && oneIsNotExplosion){
         qreal x=this->x();
         qreal y=this->y();
         scene()->addItem(new Explosion(QPointF(x,y)));

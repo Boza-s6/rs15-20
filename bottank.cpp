@@ -149,7 +149,7 @@ void BotTank::advance(int step)
         }
 
         setRotation(mAngle);
-        setPos(mapToParent(0, -(3 + sin(Speed()) * 3)));
+        setPos(mapToParent(0, -(3 + sin(speed()) * 3)));
 
     }
 

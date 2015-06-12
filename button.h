@@ -6,6 +6,7 @@
 #include <QString>
 #include <QObject>
 #include <QMouseEvent>
+#include "constants.h"
 
 class Button : public QGraphicsObject
 {

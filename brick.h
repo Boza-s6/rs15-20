@@ -3,6 +3,7 @@
 
 #include "specialqgraphicspixmapitem.h"
 #include <QGraphicsScene>
+#include "constants.h"
 
 class Brick : public SpecialQGraphicsPixmapItem
 {

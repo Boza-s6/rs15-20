@@ -3,6 +3,7 @@
 #include "specialqgraphicspixmapitem.h"
 #include <QGraphicsScene>
 #include "brick.h"
+#include "constants.h"
 
 class SolidBrick : public Brick
 {

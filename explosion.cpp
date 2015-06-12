@@ -1,19 +1,19 @@
 #include "explosion.h"
 
 Explosion::Explosion(QPointF point)
-    :mImage(":/img/img/explosion.png")
+    :mImage(":/img/img/explosion.png"),
+      mTimer(), isDone(false)
 {
     setPos(point);
-    mTimer = new QTimer;
-    mTimer->setInterval(1000);
-    mTimer->setSingleShot(true);
-    QObject::connect(mTimer, SIGNAL(timeout()), this, SLOT(onTimerDestroySelf()));
-    mTimer->start();
+
+    mTimer.setInterval(1000);
+    mTimer.setSingleShot(true);
+    QObject::connect(&mTimer, SIGNAL(timeout()), this, SLOT(destroySelf()));
+    mTimer.start();
 }
 
 Explosion::~Explosion()
 {
-    delete mTimer;
 }
 
 void Explosion::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
@@ -41,13 +41,13 @@ void Explosion::advance(int phase)
         if(dynamic_cast<Explosion*>(item)){
             continue;
         }
-        static_cast<SpecialQGraphicsPixmapItem*>(item)->hitted(100);
+        static_cast<SpecialQGraphicsPixmapItem*>(item)->hitted(EXPLOSION_DAMAGE);
 
     }
     isDone = true;
 }
 
-void Explosion::onTimerDestroySelf()
+void Explosion::destroySelf()
 {
     scene()->removeItem(this);
     delete this;

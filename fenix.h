@@ -3,6 +3,7 @@
 
 #include "specialqgraphicspixmapitem.h"
 #include <QObject>
+#include "constants.h"
 
 class Fenix : public SpecialQGraphicsPixmapItem
 {

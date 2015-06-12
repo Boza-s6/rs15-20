@@ -42,7 +42,8 @@ HEADERS  += mainwindow.h \
             map.h \
             fenix.h \
     specialqgraphicspixmapitem.h \
-    explosion.h
+    explosion.h \
+    constants.h
 
 FORMS    += mainwindow.ui
 

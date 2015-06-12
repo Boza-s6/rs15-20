@@ -5,11 +5,10 @@
 
 Tank::Tank( Orientation ori = Orientation::UP, qreal x=0, qreal y=0, const char* path=""):
     SpecialQGraphicsPixmapItem(path,x,y),
-    mOrientation(ori)
+    mOrientation(ori), mSpeed(TANK_SPEED)
 {
-    mSpeed = 10; //pikseli po sekundi
-    isMoving = false;
-    isAlive = true;
+    isMoving = false; //ne treba nam??
+    isAlive = true; //  ovo?
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
 }
 
@@ -18,14 +17,7 @@ Tank::~Tank()
 
 }
 
-
-
-
-
-
-
-
-int Tank::getAngleFromOrientation(Tank::Orientation ori)
+int Tank::getAngleFromOrientation(Tank::Orientation ori) const
 {
     switch (ori) {
     case Orientation::UP:
@@ -45,7 +37,7 @@ int Tank::getAngleFromOrientation(Tank::Orientation ori)
     return 0;
 }
 
-int Tank::Speed()
+int Tank::speed() const
 {
     return mSpeed;
 }
@@ -57,7 +49,7 @@ void Tank::setOrientation(Tank::Orientation ori)
 
 }
 
-Tank::Orientation Tank::getOrientation()
+Tank::Orientation Tank::getOrientation() const
 {
     return mOrientation;
 }
@@ -68,12 +60,9 @@ void Tank::advance(int step)
         return;
 }
 
-qreal Tank::speed() const
-{
-    return mSpeed;
-}
 
-void Tank::setSpeed(const qreal &speed)
+
+void Tank::setSpeed(const int speed)
 {
     mSpeed = speed;
 }
