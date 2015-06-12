@@ -6,7 +6,7 @@ Explosion::Explosion(QPointF point)
 {
     setPos(point);
 
-    mTimer.setInterval(1000);
+    mTimer.setInterval(EXPLOSION_TIME_MILISEC);
     mTimer.setSingleShot(true);
     QObject::connect(&mTimer, SIGNAL(timeout()), this, SLOT(destroySelf()));
     mTimer.start();

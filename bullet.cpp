@@ -71,7 +71,7 @@ void Bullet::advance(int step)
 
     bool oneIsNotExplosion = false;
     for(auto item : list)
-        if(typeid(item) != typeid(Explosion)){
+        if(!dynamic_cast<Explosion*>(item)){
             oneIsNotExplosion = true;
             break;
         }
@@ -84,10 +84,10 @@ void Bullet::advance(int step)
         destroySelf();
     }
 
-    if (this->x()<0 || this->x()>1000) {
+    if (this->x()<0 || this->x()>SCENE_WIDTH) {
         destroySelf();
     }
-    if(this->y()<0 || this->y()>700){
+    if(this->y()<0 || this->y()>SCENE_HEIGHT){
         destroySelf();
     }
 }
