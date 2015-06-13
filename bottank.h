@@ -6,6 +6,7 @@
 #include <QGraphicsItem>
 #include "tank.h"
 #include "constants.h"
+#include <QTime>
 
 class BotTank: public Tank
 {
@@ -17,8 +18,9 @@ public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;
 
 private:
-
+    QTime mTimeOfLastBullet;
     qreal mAngle;
+    bool mFirstTime;
 
 };
 
