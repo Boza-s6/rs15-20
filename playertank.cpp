@@ -7,7 +7,8 @@
 
 PlayerTank::PlayerTank(qreal x, qreal y, Tank::Orientation ori=Orientation::UP , Player p)
     : Tank(ori, x,y, ":/img/img/player1_tank.png"),
-      mButtonsPressed(), mTimeOfLastBullet()
+      mButtonsPressed(), mTimeOfLastBullet(),
+      mPlayer(p)
 {
     if(p == Player::Player1){
         UP_BUTTON = Qt::Key_W;
@@ -40,6 +41,17 @@ void PlayerTank::keyPressEvent(QKeyEvent *event)
 void PlayerTank::keyReleaseEvent(QKeyEvent *event)
 {
     mButtonsPressed -= (Qt::Key)event->key();
+}
+
+void PlayerTank::hitted(int damage)
+{
+    mHealth -= damage;
+
+    if(mHealth <= 0){
+        this->scene()->removeItem(this);
+        delete this;
+        emit playerTankDestroyed(mPlayer);
+    }
 }
 
 void PlayerTank::advance(int step)
@@ -138,7 +150,7 @@ void PlayerTank::processKey(const Qt::Key & button)
         static bool firstTime = true;
         if(firstTime){
             mTimeOfLastBullet.start();
-            mTimeOfLastBullet.addMSecs(200);
+            mTimeOfLastBullet.addMSecs(BULLET_TIME_BETWEEN_FIRE_MILISEC + 1);
             firstTime = false;
         }
 

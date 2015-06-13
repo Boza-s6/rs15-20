@@ -27,7 +27,8 @@ public:
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     virtual void advance(int step) Q_DECL_OVERRIDE;
 
-
+protected:
+    int mHealth;
 
 private:
     Orientation mOrientation;

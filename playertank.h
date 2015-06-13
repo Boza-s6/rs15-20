@@ -10,6 +10,7 @@
 
 class PlayerTank : public Tank
 {
+    Q_OBJECT
 public:
     enum Player {Player1, Player2};
 
@@ -17,9 +18,12 @@ public:
     ~PlayerTank();
     void keyPressEvent(QKeyEvent * event) Q_DECL_OVERRIDE;
     void keyReleaseEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
+    void hitted(int damage) Q_DECL_OVERRIDE;
 
-public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;
+
+signals:
+    void playerTankDestroyed(PlayerTank::Player p = Player1);
 
 private:
     void multipeButtonsPressed();
@@ -30,6 +34,7 @@ private:
     QSet<Qt::Key> mButtonsPressed;
     QTime mTimeOfLastBullet;
     int UP_BUTTON, DOWN_BUTTON, LEFT_BUTTON, RIGHT_BUTTON, FIRE_BUTTON;
+    Player mPlayer;
 
 };
 
