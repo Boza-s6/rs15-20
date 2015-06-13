@@ -5,10 +5,24 @@
 #include "solidbrick.h"
 #include "fenix.h"
 
-PlayerTank::PlayerTank(qreal x, qreal y,Tank::Orientation ori=Orientation::UP )
+PlayerTank::PlayerTank(qreal x, qreal y, Tank::Orientation ori=Orientation::UP , Player p)
     : Tank(ori, x,y, ":/img/img/player1_tank.png"),
       mButtonsPressed(), mTimeOfLastBullet()
 {
+    if(p == Player::Player1){
+        UP_BUTTON = Qt::Key_W;
+        DOWN_BUTTON = Qt::Key_S;
+        LEFT_BUTTON = Qt::Key_A;
+        RIGHT_BUTTON = Qt::Key_D;
+        FIRE_BUTTON = Qt::Key_Space;
+    }
+    else{
+        UP_BUTTON = Qt::Key_Up;
+        DOWN_BUTTON = Qt::Key_Down;
+        LEFT_BUTTON = Qt::Key_Left;
+        RIGHT_BUTTON = Qt::Key_Right;
+        FIRE_BUTTON = Qt::Key_Control;
+    }
     setRotation(getAngleFromOrientation(ori));
 }
 
@@ -58,16 +72,16 @@ void PlayerTank::multipeButtonsPressed()
 
     for(auto &button : mButtonsPressed)
     {
-        if(WASDProcessed && (button == Qt::Key_W || button == Qt::Key_S
-                             || button == Qt::Key_A
-                             || button == Qt::Key_D))
+        if(WASDProcessed && (button == UP_BUTTON || button == DOWN_BUTTON
+                             || button == LEFT_BUTTON
+                             || button == RIGHT_BUTTON))
             continue;
 
         processKey(button);
 
-        if (button == Qt::Key_W || button == Qt::Key_S
-                || button == Qt::Key_A
-                || button == Qt::Key_D){
+        if (button == UP_BUTTON|| button == DOWN_BUTTON
+                || button == LEFT_BUTTON
+                || button == RIGHT_BUTTON){
             WASDProcessed = true;
         }
 
@@ -84,32 +98,41 @@ void PlayerTank::singleButtonPressed()
 void PlayerTank::processKey(const Qt::Key & button)
 {
     //proveravamo da li je udario u zid i ako nije taster moze da se obradi
-    switch (button) {
-    case Qt::Key_W:
+
+    if(button == UP_BUTTON)
+    {
         if(!mIsColliding || mCollidingSide != Orientation::UP){
             setOrientation(Orientation::UP);
             moveBy(0, -speed());
         }
-        break;
-    case Qt::Key_S:
+    }
+
+    else if(button == DOWN_BUTTON)
+    {
         if(!mIsColliding || mCollidingSide != Orientation::DOWN){
             setOrientation(Orientation::DOWN);
             moveBy(0, speed());
         }
-        break;
-    case Qt::Key_A:
+    }
+
+    else if (button == LEFT_BUTTON)
+    {
         if(!mIsColliding || mCollidingSide != Orientation::LEFT){
             setOrientation(Orientation::LEFT);
             moveBy(-speed(), 0);
         }
-        break;
-    case Qt::Key_D:
+    }
+
+    else if(button == RIGHT_BUTTON)
+    {
         if(!mIsColliding || mCollidingSide != Orientation::RIGHT){
             setOrientation(Orientation::RIGHT);
             moveBy(speed(), 0);
         }
-        break;
-    case Qt::Key_Space:
+    }
+
+    else if(button == FIRE_BUTTON)
+    {
         //ako prvi put udjemo ovde moramo da budemo sigurni
         // da smo pokrenuli tajmer
         static bool firstTime = true;
@@ -127,8 +150,7 @@ void PlayerTank::processKey(const Qt::Key & button)
             scene()->addItem(b);
             mTimeOfLastBullet.restart();
         }
-        break;
-    default:
-        break;
     }
+
+
 }

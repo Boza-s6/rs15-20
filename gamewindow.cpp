@@ -63,7 +63,7 @@ void GameWindow::init()
     BotTank *bot4 = new BotTank( 0,600, Tank::Orientation::UP);
     mScene->addItem(bot4);
 
-    PlayerTank *player = new PlayerTank( 500,300, Tank::Orientation::LEFT);
+    PlayerTank *player = new PlayerTank( 500,300, Tank::Orientation::LEFT, PlayerTank::Player::Player1);
     player->setFocus();
     mScene->addItem(player);
 }

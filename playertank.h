@@ -11,21 +11,25 @@
 class PlayerTank : public Tank
 {
 public:
-    PlayerTank(qreal x, qreal y, Orientation ori);
+    enum Player {Player1, Player2};
+
+    PlayerTank(qreal x, qreal y, Orientation ori, Player p = Player::Player1);
     ~PlayerTank();
     void keyPressEvent(QKeyEvent * event) Q_DECL_OVERRIDE;
     void keyReleaseEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
+
 public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;
 
 private:
     void multipeButtonsPressed();
     void singleButtonPressed();
-    void processKey(const Qt::Key & button);
+    void processKey(const Qt::Key &button);
+
 private:
     QSet<Qt::Key> mButtonsPressed;
     QTime mTimeOfLastBullet;
-
+    int UP_BUTTON, DOWN_BUTTON, LEFT_BUTTON, RIGHT_BUTTON, FIRE_BUTTON;
 
 };
 

@@ -41,7 +41,8 @@ void Explosion::advance(int phase)
         if(dynamic_cast<Explosion*>(item)){
             continue;
         }
-        static_cast<SpecialQGraphicsPixmapItem*>(item)->hitted(EXPLOSION_DAMAGE);
+        if(dynamic_cast<SpecialQGraphicsPixmapItem*>(item))
+            static_cast<SpecialQGraphicsPixmapItem*>(item)->hitted(EXPLOSION_DAMAGE);
 
     }
     isDone = true;
