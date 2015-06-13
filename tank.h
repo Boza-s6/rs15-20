@@ -30,6 +30,11 @@ public:
 protected:
     int mHealth;
 
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
+
 private:
     Orientation mOrientation;
 

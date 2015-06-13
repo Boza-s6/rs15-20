@@ -40,6 +40,7 @@ void Bullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     painter->drawPixmap(-x/2,-y/2, mImage);
 }
 
+
 void Bullet::advance(int step)
 {
     if(step == 0)
@@ -77,11 +78,17 @@ void Bullet::advance(int step)
     }
 
     bool oneIsNotExplosion = false;
-    for(auto item : list)
+    for(auto item : list){
         if(!dynamic_cast<Explosion*>(item)){
             oneIsNotExplosion = true;
-            break;
         }
+        if(dynamic_cast<Bullet*>(item) != nullptr){
+            destroySelf();
+            return;
+        }
+    }
+
+
 
     //ako se sudario sa necim i ako to nesto nije Explosion
     if(isColliding && oneIsNotExplosion){

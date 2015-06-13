@@ -67,6 +67,30 @@ void Tank::advance(int step)
 
 }
 
+void Tank::moveUp()
+{
+    setOrientation(Orientation::UP);
+    moveBy(0, -speed());
+}
+
+void Tank::moveDown()
+{
+    setOrientation(Orientation::DOWN);
+    moveBy(0, speed());
+}
+
+void Tank::moveLeft()
+{
+    setOrientation(Orientation::LEFT);
+    moveBy(-speed(), 0);
+}
+
+void Tank::moveRight()
+{
+    setOrientation(Orientation::RIGHT);
+    moveBy(speed(), 0);
+}
+
 
 
 void Tank::setSpeed(const int speed)

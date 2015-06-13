@@ -25,6 +25,8 @@ PlayerTank::PlayerTank(qreal x, qreal y, Tank::Orientation ori=Orientation::UP ,
         FIRE_BUTTON = Qt::Key_Control;
     }
     setRotation(getAngleFromOrientation(ori));
+    mTimeOfLastBullet.start();
+    mTimeOfLastBullet.addMSecs(BULLET_TIME_BETWEEN_FIRE_MILISEC);
 }
 
 PlayerTank::~PlayerTank()
@@ -114,46 +116,35 @@ void PlayerTank::processKey(const Qt::Key & button)
     if(button == UP_BUTTON)
     {
         if(!mIsColliding || mCollidingSide != Orientation::UP){
-            setOrientation(Orientation::UP);
-            moveBy(0, -speed());
+//            setOrientation(Orientation::UP);
+//            moveBy(0, -speed());
+            moveUp(); //radi isto sto i ovo iznad
         }
     }
 
     else if(button == DOWN_BUTTON)
     {
         if(!mIsColliding || mCollidingSide != Orientation::DOWN){
-            setOrientation(Orientation::DOWN);
-            moveBy(0, speed());
+            moveDown();
         }
     }
 
     else if (button == LEFT_BUTTON)
     {
         if(!mIsColliding || mCollidingSide != Orientation::LEFT){
-            setOrientation(Orientation::LEFT);
-            moveBy(-speed(), 0);
+            moveLeft();
         }
     }
 
     else if(button == RIGHT_BUTTON)
     {
         if(!mIsColliding || mCollidingSide != Orientation::RIGHT){
-            setOrientation(Orientation::RIGHT);
-            moveBy(speed(), 0);
+            moveRight();
         }
     }
 
     else if(button == FIRE_BUTTON)
     {
-        //ako prvi put udjemo ovde moramo da budemo sigurni
-        // da smo pokrenuli tajmer
-        static bool firstTime = true;
-        if(firstTime){
-            mTimeOfLastBullet.start();
-            mTimeOfLastBullet.addMSecs(BULLET_TIME_BETWEEN_FIRE_MILISEC + 1);
-            firstTime = false;
-        }
-
         if(mTimeOfLastBullet.elapsed() >= BULLET_TIME_BETWEEN_FIRE_MILISEC){
             qreal x=this->x();
             qreal y=this->y();

@@ -9,6 +9,7 @@
 #include "constants.h"
 
 
+
 class Bullet : public QGraphicsObject
 {
     Q_OBJECT
