@@ -10,7 +10,7 @@ PlayerTank::PlayerTank(qreal x, qreal y, Tank::Orientation ori=Orientation::UP ,
       mButtonsPressed(), mTimeOfLastBullet(),
       mPlayer(p)
 {
-    if(p == Player::Player1){
+    if(mPlayer == Player::Player1){
         UP_BUTTON = Qt::Key_W;
         DOWN_BUTTON = Qt::Key_S;
         LEFT_BUTTON = Qt::Key_A;
