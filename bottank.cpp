@@ -41,7 +41,17 @@ void BotTank::advance(int step)
     }
 
     mIsColliding = false;
-        mIsColliding = mCollidingRect.collidingItems().size() == 0 ? false : true;
+    mIsColliding = mCollidingRect.collidingItems().size() == 0 ? false : true;
+
+    bool isCollidingWithBullet =false;
+    for(auto item : mCollidingRect.collidingItems()){
+        if(dynamic_cast<Bullet*>(item)){
+            isCollidingWithBullet = true;
+            break;
+        }
+    }
+    if(isCollidingWithBullet)
+        mIsColliding = false;
 
     if(mIsColliding)
         mCollidingSide = getOrientation();
