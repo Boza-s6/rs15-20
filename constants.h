@@ -12,6 +12,7 @@ static const int TANK_HEALTH_STRONG = 300;
 static const int EXPLOSION_DAMAGE = 100;
 static const int FENIX_HEALTH = 200;
 static const int BULLET_TIME_BETWEEN_FIRE_MILISEC = 300;
+static const int BOT_MAX_FIRING_TIME = 3000;
 
 #endif // CONSTANTS
 

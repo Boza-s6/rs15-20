@@ -4,13 +4,16 @@
 #include <math.h>
 #include <iostream>
 #include "playertank.h"
-//static const double Pi = 3.14159265358979323846264338327950288419717;
-//static double TwoPi = 2.0 * Pi;
+#include "bullet.h"
+
 
 BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN)
-    : Tank(ori, x,y, ":/img/img/player2_tank.png")
+    : Tank(ori, x,y, ":/img/img/player2_tank.png"),
+      mTimeOfLastBullet(),
+      mFirstTime(true)
 {
     setRotation(getAngleFromOrientation(ori));
+
 
 }
 
@@ -25,8 +28,25 @@ void BotTank::advance(int step)
     if (!step)
         return;
 
-    mIsColliding = false;
-    mIsColliding = mCollidingRect.collidingItems().size() == 0 ? false : true;
+    int r=BOT_MAX_FIRING_TIME- rand()%1500;
+
+    if(mFirstTime){
+        mTimeOfLastBullet.start();
+        mTimeOfLastBullet.addMSecs(r + 1);
+        mFirstTime = false;
+    }
+
+    if(mTimeOfLastBullet.elapsed() >= r){
+        qreal x=this->x();
+        qreal y=this->y();
+
+        Bullet *b=new Bullet(getOrientation(), QPointF(x,y) );
+        scene()->addItem(b);
+        mTimeOfLastBullet.restart();
+    }
+
+
+    QList<QGraphicsItem *> Tanks = scene()->items();
 
     if(mIsColliding)
         mCollidingSide = getOrientation();
