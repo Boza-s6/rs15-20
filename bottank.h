@@ -20,7 +20,6 @@ public slots:
 private:
     QTime mTimeOfLastBullet;
     qreal mAngle;
-    bool mFirstTime;
 
 };
 

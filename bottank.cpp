@@ -9,11 +9,11 @@
 
 BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN)
     : Tank(ori, x,y, ":/img/img/player2_tank.png"),
-      mTimeOfLastBullet(),
-      mFirstTime(true)
+      mTimeOfLastBullet()
 {
     setRotation(getAngleFromOrientation(ori));
-
+    mTimeOfLastBullet.start();
+    mTimeOfLastBullet.addMSecs(BOT_MAX_FIRING_TIME + 1);
 
 }
 
@@ -30,11 +30,6 @@ void BotTank::advance(int step)
 
     int r=BOT_MAX_FIRING_TIME- rand()%1500;
 
-    if(mFirstTime){
-        mTimeOfLastBullet.start();
-        mTimeOfLastBullet.addMSecs(r + 1);
-        mFirstTime = false;
-    }
 
     if(mTimeOfLastBullet.elapsed() >= r){
         qreal x=this->x();
@@ -45,8 +40,8 @@ void BotTank::advance(int step)
         mTimeOfLastBullet.restart();
     }
 
-
-    QList<QGraphicsItem *> Tanks = scene()->items();
+    mIsColliding = false;
+        mIsColliding = mCollidingRect.collidingItems().size() == 0 ? false : true;
 
     if(mIsColliding)
         mCollidingSide = getOrientation();
