@@ -38,9 +38,6 @@ void Explosion::advance(int phase)
     QList<QGraphicsItem*> list = collidingItems();
 
     for(auto &item: list){
-        if(dynamic_cast<Explosion*>(item)){
-            continue;
-        }
         if(dynamic_cast<SpecialQGraphicsPixmapItem*>(item))
             static_cast<SpecialQGraphicsPixmapItem*>(item)->hitted(EXPLOSION_DAMAGE);
 
