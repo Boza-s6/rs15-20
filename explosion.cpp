@@ -10,10 +10,18 @@ Explosion::Explosion(QPointF point)
     mTimer.setSingleShot(true);
     QObject::connect(&mTimer, SIGNAL(timeout()), this, SLOT(destroySelf()));
     mTimer.start();
+
+    //Zvuk explozije
+    /*
+    mMusicExplosion = new QMediaPlayer();
+    mMusicExplosion->setMedia(QUrl("qrc:/sounds/sounds/explosion.mp3"));
+    mMusicExplosion->play();
+    */
 }
 
 Explosion::~Explosion()
 {
+    //delete mMusicExplosion;
 }
 
 void Explosion::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

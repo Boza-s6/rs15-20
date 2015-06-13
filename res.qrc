@@ -3,6 +3,7 @@
         <file>sounds/bullet.mp3</file>
         <file>sounds/heavy_wind.mp3</file>
         <file>sounds/igraj.mp3</file>
+        <file>sounds/explosion.mp3</file>
     </qresource>
     <qresource prefix="/img">
         <file>img/bg.png</file>

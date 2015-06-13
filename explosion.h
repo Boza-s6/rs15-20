@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QObject>
 #include "constants.h"
+//#include <QtMultimedia>
 
 class Explosion : public QGraphicsObject
 {
@@ -26,6 +27,7 @@ private:
     QPixmap mImage;
     QTimer mTimer;
     bool isDone;
+    //QMediaPlayer * mMusicExplosion;
 };
 
 #endif // EXPLOSION_H
