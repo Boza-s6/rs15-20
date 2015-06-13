@@ -2,11 +2,17 @@
 #include <QPainter>
 #include <iostream>
 #include <QKeyEvent>
+//#define DEBUG
 
 Tank::Tank( Orientation ori = Orientation::UP, qreal x=0, qreal y=0, const char* path=""):
     SpecialQGraphicsPixmapItem(path,x,y),
-    mOrientation(ori), mSpeed(TANK_SPEED)
+    mOrientation(ori), mSpeed(TANK_SPEED),
+    mCollidingRect(QRect(boundingRect().topLeft().x() +2 , boundingRect().topLeft().y() - 7, 40, 3), this)
 {
+
+    mCollidingRect.setPen(QPen(Qt::PenStyle::NoPen)); //postavljamo olovku na 'bez olovke'
+                                                      //da ne bi isrctavali pravouganik na sceni
+
     isMoving = false; //ne treba nam??
     isAlive = true; //  ovo?
     setFlags(QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemIsMovable);
@@ -81,18 +87,20 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
     this->setFocus();
     painter->drawPixmap(-x/2,-y/2, pixmap());
 
-
-//    QLine goredole(QPoint(0, 50), QPoint(0, -50));
-//    QLine levodesno(QPoint(-50, 0), QPoint(50, 0));
-//    QPen olovka(Qt::white);
-//    painter->setPen(olovka);
-//    painter->drawLine(goredole);
-//    painter->drawLine(levodesno);
+#ifdef DEBUG
+    QLine goredole(QPoint(0, 50), QPoint(0, -50));
+    QLine levodesno(QPoint(-50, 0), QPoint(50, 0));
+    QPen olovka(Qt::white);
+    painter->setPen(olovka);
+    painter->drawLine(goredole);
+    painter->drawLine(levodesno);
 
     painter->setPen(QPen(Qt::red));
-    qreal w = pixmap().width();
-    qreal h = pixmap().height();
-    painter->drawRect(QRectF(-w/2, -h/2 -2, w, h));
+    painter->drawRect(boundingRect());
+
+
+    mCollidingRect.paint(painter, option, 0);
+#endif
 }
 
 QRectF Tank::boundingRect() const

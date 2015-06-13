@@ -1,8 +1,6 @@
 #ifndef CONSTANTS
 #define CONSTANTS
 
-#define DEBUG 0
-
 static const int TANK_SPEED = 5;
 static const int BULLET_SPEED = 10;
 static const int SCENE_WIDTH = 1000;

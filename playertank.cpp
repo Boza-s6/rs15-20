@@ -4,6 +4,7 @@
 #include "bullet.h"
 #include "solidbrick.h"
 #include "fenix.h"
+
 PlayerTank::PlayerTank(qreal x, qreal y,Tank::Orientation ori=Orientation::UP )
     : Tank(ori, x,y, ":/img/img/player1_tank.png"),
       mButtonsPressed(), mTimeOfLastBullet()
@@ -41,42 +42,12 @@ void PlayerTank::advance(int step)
         multipeButtonsPressed();
     }
 
-    auto list = collidingItems();
-    bool isColliding = list.size()==0 ? false : true;
+    mIsColliding = false;
+    mIsColliding = mCollidingRect.collidingItems().size() == 0 ? false : true;
 
+    if(mIsColliding)
+        mCollidingSide = getOrientation();
 
-    //vracamo vrednosti na default
-    hitLeft=false;
-    hitRight=false;
-    hitBottom=false;
-    hitUp=false;
-
-
-    //npr ako tenk udari gore u prvom prolazu orijentacija ce da bude gore i zabranice se taster gore
-    // u drugom prolazu kad se taster za levo stisne orijentacija ce da se promeni a ovo ce da prijavi
-    // koliziju sa levom stranom, a to nije tacno!!!
-
-    //ako je udario podesavamo odredjeni bool
-
-    if(isColliding){
-
-        switch (getOrientation()) {
-        case Orientation::UP:
-            hitUp=true;
-            break;
-        case Orientation::DOWN:
-            hitBottom=true;
-            break;
-        case Orientation::LEFT:
-            hitLeft=true;
-            break;
-        case Orientation::RIGHT:
-            hitRight=true;
-            break;
-        default:
-            break;
-        }
-    }
 
 
 }
@@ -115,25 +86,25 @@ void PlayerTank::processKey(const Qt::Key & button)
     //proveravamo da li je udario u zid i ako nije taster moze da se obradi
     switch (button) {
     case Qt::Key_W:
-        if(!hitUp){
+        if(!mIsColliding || mCollidingSide != Orientation::UP){
             setOrientation(Orientation::UP);
             moveBy(0, -speed());
         }
         break;
     case Qt::Key_S:
-        if(!hitBottom){
+        if(!mIsColliding || mCollidingSide != Orientation::DOWN){
             setOrientation(Orientation::DOWN);
             moveBy(0, speed());
         }
         break;
     case Qt::Key_A:
-        if(!hitLeft){
+        if(!mIsColliding || mCollidingSide != Orientation::LEFT){
             setOrientation(Orientation::LEFT);
             moveBy(-speed(), 0);
         }
         break;
     case Qt::Key_D:
-        if(!hitRight){
+        if(!mIsColliding || mCollidingSide != Orientation::RIGHT){
             setOrientation(Orientation::RIGHT);
             moveBy(speed(), 0);
         }

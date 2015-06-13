@@ -69,6 +69,13 @@ void Bullet::advance(int step)
     auto list = collidingItems();
     bool isColliding = list.size()==0 ? false : true;
 
+    //ako se sudario sa QRect koji koristimo za detekciju preklapanja, nastavi dalje
+    for(auto item : list){
+        if(dynamic_cast<QGraphicsRectItem*>(item)){
+            return;
+        }
+    }
+
     bool oneIsNotExplosion = false;
     for(auto item : list)
         if(!dynamic_cast<Explosion*>(item)){

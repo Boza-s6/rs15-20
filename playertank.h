@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QSet>
 #include <QTime>
+#include <QRect>
 #include "constants.h"
 
 class PlayerTank : public Tank
@@ -24,6 +25,7 @@ private:
 private:
     QSet<Qt::Key> mButtonsPressed;
     QTime mTimeOfLastBullet;
+
 
 };
 

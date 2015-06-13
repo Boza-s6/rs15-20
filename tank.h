@@ -1,6 +1,7 @@
 #ifndef TANK_H
 #define TANK_H
 #include <QGraphicsItem>
+#include <QGraphicsRectItem>
 #include "specialqgraphicspixmapitem.h"
 #include "constants.h"
 
@@ -25,13 +26,20 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     virtual void advance(int step) Q_DECL_OVERRIDE;
-    bool hitLeft,hitRight,hitBottom,hitUp;
+
+
 
 private:
     Orientation mOrientation;
-    int mSpeed;
 
+    int mSpeed;
     bool isMoving, isAlive;
+
+protected:
+    bool hitLeft,hitRight,hitBottom,hitUp;
+    QGraphicsRectItem mCollidingRect;
+    Orientation mCollidingSide;
+    bool mIsColliding;
 
 };
 
