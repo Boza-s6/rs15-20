@@ -10,6 +10,7 @@ class Tank : public  SpecialQGraphicsPixmapItem
 
 public:
     enum Orientation{LEFT=0, UP=1, RIGHT=2, DOWN=3};
+    enum TankType {Player, Bot};
 
     Tank(Orientation ori, qreal x, qreal y, const char * path, int health = 100);
     virtual ~Tank()=0;

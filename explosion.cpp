@@ -1,8 +1,8 @@
 #include "explosion.h"
 
-Explosion::Explosion(QPointF point)
+Explosion::Explosion(QPointF point, Tank::TankType type)
     :mImage(":/img/img/explosion.png"),
-      mTimer(), isDone(false)
+      mTimer(), isDone(false), mTankType(type)
 {
     setPos(point);
 
@@ -47,8 +47,14 @@ void Explosion::advance(int phase)
 
     for(auto &item: list){
         if(dynamic_cast<SpecialQGraphicsPixmapItem*>(item))
-            static_cast<SpecialQGraphicsPixmapItem*>(item)->hitted(EXPLOSION_DAMAGE);
+        {
+            if(dynamic_cast<PlayerTank*>(item) && mTankType == Tank::Player)
+                continue;
+            if(dynamic_cast<BotTank*>(item) && mTankType == Tank::Bot)
+                continue;
 
+            static_cast<SpecialQGraphicsPixmapItem*>(item)->hitted(EXPLOSION_DAMAGE);
+        }
     }
     isDone = true;
 }

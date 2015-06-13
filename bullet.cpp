@@ -5,9 +5,9 @@
 #include <typeinfo>
 
 
-Bullet::Bullet(Tank::Orientation direction, QPointF point)
+Bullet::Bullet(Tank::Orientation direction, QPointF point, Tank::TankType type)
     : mImage(":/img/img/metak.png"), mOrientation(direction),
-      mPoint(point), mSpeed(BULLET_SPEED)
+      mPoint(point), mSpeed(BULLET_SPEED), mTankType(type)
 {
     setFlags(QGraphicsItem::ItemIsMovable);
     mapFromScene(mPoint); //mozda ne treba ovo
@@ -70,18 +70,28 @@ void Bullet::advance(int step)
     auto list = collidingItems();
     bool isColliding = list.size()==0 ? false : true;
 
-    //ako se sudario sa QRect koji koristimo za detekciju preklapanja, nastavi dalje
-    for(auto item : list){
+
+    bool oneIsNotExplosion = false;
+    for(auto item : list)
+    {
+        //proveravmo tip tenka i vracamo se iz funkcije
+        //jer ne zelimo da ubijemo svog tenka
+        if(mTankType == Tank::TankType::Player)
+            if(dynamic_cast<PlayerTank*>(item))
+                return;
+        if(mTankType == Tank::TankType::Bot)
+            if(dynamic_cast<BotTank*>(item))
+                return;
+
+        //ako se sudario sa QRect koji koristimo za detekciju preklapanja, nastavi dalje;
         if(dynamic_cast<QGraphicsRectItem*>(item)){
             return;
         }
-    }
-
-    bool oneIsNotExplosion = false;
-    for(auto item : list){
+        //ako se sudario sa ekspolzijom oznaci;
         if(!dynamic_cast<Explosion*>(item)){
             oneIsNotExplosion = true;
         }
+        // ako se sudario sa drugim metkom unisti se;
         if(dynamic_cast<Bullet*>(item) != nullptr){
             destroySelf();
             return;
@@ -94,7 +104,7 @@ void Bullet::advance(int step)
     if(isColliding && oneIsNotExplosion){
         qreal x=this->x();
         qreal y=this->y();
-        scene()->addItem(new Explosion(QPointF(x,y)));
+        scene()->addItem(new Explosion(QPointF(x,y), mTankType));
         destroySelf();
     }
 }

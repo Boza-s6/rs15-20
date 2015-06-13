@@ -35,7 +35,7 @@ void BotTank::advance(int step)
         qreal x=this->x();
         qreal y=this->y();
 
-        Bullet *b=new Bullet(getOrientation(), QPointF(x,y) );
+        Bullet *b=new Bullet(getOrientation(), QPointF(x,y), Tank::Bot );
         scene()->addItem(b);
         mTimeOfLastBullet.restart();
     }

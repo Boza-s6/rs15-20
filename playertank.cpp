@@ -149,7 +149,7 @@ void PlayerTank::processKey(const Qt::Key & button)
             qreal x=this->x();
             qreal y=this->y();
 
-            Bullet *b=new Bullet(getOrientation(), QPointF(x,y) );
+            Bullet *b=new Bullet(getOrientation(), QPointF(x,y), Tank::Player );
             scene()->addItem(b);
             mTimeOfLastBullet.restart();
         }
