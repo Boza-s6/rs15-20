@@ -12,7 +12,7 @@ class BotTank: public Tank
 {
 public:
 
-    BotTank(qreal x, qreal y, Orientation ori);
+    BotTank(qreal x, qreal y, Orientation ori, int health = 100);
     ~BotTank();
 public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;

@@ -11,7 +11,7 @@ class Tank : public  SpecialQGraphicsPixmapItem
 public:
     enum Orientation{LEFT=0, UP=1, RIGHT=2, DOWN=3};
 
-    Tank( Orientation ori, qreal x, qreal y, const char * path);
+    Tank(Orientation ori, qreal x, qreal y, const char * path, int health = 100);
     virtual ~Tank()=0;
 
     int getAngleFromOrientation(Orientation ori) const;
@@ -28,7 +28,6 @@ public:
     virtual void advance(int step) Q_DECL_OVERRIDE;
 
 protected:
-    int mHealth;
 
     void moveUp();
     void moveDown();
@@ -46,6 +45,7 @@ protected:
     QGraphicsRectItem mCollidingRect;
     Orientation mCollidingSide;
     bool mIsColliding;
+    int mHealth;
 
 };
 

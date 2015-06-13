@@ -4,10 +4,11 @@
 #include <QKeyEvent>
 //#define DEBUG
 
-Tank::Tank( Orientation ori = Orientation::UP, qreal x=0, qreal y=0, const char* path=""):
+Tank::Tank( Orientation ori = Orientation::UP, qreal x=0, qreal y=0, const char* path="", int health):
     SpecialQGraphicsPixmapItem(path,x,y),
     mOrientation(ori), mSpeed(TANK_SPEED),
-    mCollidingRect(QRect(boundingRect().topLeft().x() +2 , boundingRect().topLeft().y() - 7, 40, 3), this)
+    mCollidingRect(QRect(boundingRect().topLeft().x() +2 , boundingRect().topLeft().y() - 7, 40, 3), this),
+    mHealth(health)
 {
 
     mCollidingRect.setPen(QPen(Qt::PenStyle::NoPen)); //postavljamo olovku na 'bez olovke'

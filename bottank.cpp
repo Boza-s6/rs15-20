@@ -7,8 +7,8 @@
 #include "bullet.h"
 
 
-BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN)
-    : Tank(ori, x,y, ":/img/img/player2_tank.png"),
+BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN, int health)
+    : Tank(ori, x,y, ":/img/img/player2_tank.png", health),
       mTimeOfLastBullet()
 {
     setRotation(getAngleFromOrientation(ori));

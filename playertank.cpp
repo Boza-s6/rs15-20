@@ -5,8 +5,8 @@
 #include "solidbrick.h"
 #include "fenix.h"
 
-PlayerTank::PlayerTank(qreal x, qreal y, Tank::Orientation ori=Orientation::UP , Player p)
-    : Tank(ori, x,y, ":/img/img/player1_tank.png"),
+PlayerTank::PlayerTank(qreal x, qreal y, Tank::Orientation ori=Orientation::UP , Player p, int health)
+    : Tank(ori, x,y, ":/img/img/player1_tank.png", health),
       mButtonsPressed(), mTimeOfLastBullet(),
       mPlayer(p)
 {
@@ -51,8 +51,8 @@ void PlayerTank::hitted(int damage)
 
     if(mHealth <= 0){
         this->scene()->removeItem(this);
-        delete this;
         emit playerTankDestroyed(mPlayer);
+        delete this;
     }
 }
 

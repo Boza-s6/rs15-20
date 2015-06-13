@@ -14,7 +14,7 @@ class PlayerTank : public Tank
 public:
     enum Player {Player1, Player2};
 
-    PlayerTank(qreal x, qreal y, Orientation ori, Player p = Player::Player1);
+    PlayerTank(qreal x, qreal y, Orientation ori, Player p = Player::Player1, int health = 100);
     ~PlayerTank();
     void keyPressEvent(QKeyEvent * event) Q_DECL_OVERRIDE;
     void keyReleaseEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
