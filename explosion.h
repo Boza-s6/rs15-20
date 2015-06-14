@@ -9,7 +9,7 @@
 #include "tank.h"
 #include "playertank.h"
 #include "bottank.h"
-//#include <QtMultimedia>
+#include <QtMultimedia>
 
 class Explosion : public QGraphicsObject
 {
@@ -31,7 +31,7 @@ private:
     QTimer mTimer;
     bool isDone;
     Tank::TankType mTankType;
-    //QMediaPlayer * mMusicExplosion;
+    QMediaPlayer * mMusicExplosion;
 };
 
 #endif // EXPLOSION_H

@@ -4,6 +4,7 @@
 #include "bottank.h"
 #include "playertank.h"
 #include <QTimer>
+#include <QtMultimedia>
 
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent), mTimer(),
@@ -42,6 +43,11 @@ GameWindow::GameWindow( QWidget *parent)
     mTimer.start(30);
 
     mView->setFocus();
+
+    //Pustanje pozadinske muzike
+    QMediaPlayer * music = new QMediaPlayer();
+    music->setMedia(QUrl("qrc:/sounds/sounds/igraj.mp3"));  //QUrl("qrc:/sounds/sounds/igraj.mp3") - za motivaciju xD
+    music->play();
 
 }
 
