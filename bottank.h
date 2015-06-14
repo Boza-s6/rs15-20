@@ -10,6 +10,7 @@
 
 class BotTank: public Tank
 {
+    Q_OBJECT
 public:
 
     BotTank(qreal x, qreal y, Orientation ori, int health = BOTTANK_HEALTH);
@@ -17,6 +18,8 @@ public:
     void hitted(int damage)  Q_DECL_OVERRIDE;
 public slots:
     virtual void advance(int step) Q_DECL_OVERRIDE;
+signals:
+    void botKilled();
 
 private:
     QTime mTimeOfLastBullet;

@@ -13,6 +13,8 @@
 #include "constants.h"
 #include <QFont>
 #include <QGraphicsTextItem>
+#include "bottank.h"
+#include "playertank.h"
 
 class GameWindow : public QWidget
 {
@@ -23,6 +25,7 @@ public:
 public slots:
     void mPlayerTankHealthChanged(int health);
     void playerKilled();
+    void mbotKilled();
 signals:
     void notifyPlayerKilled();
 private:
@@ -32,6 +35,10 @@ private:
     QGraphicsView  * mView;
     QGraphicsScene * mScene;
     QGraphicsTextItem mText;
+    int mPlayerNumLife;  //broj zivota playera
+    int mBotReserve;
+    PlayerTank *mPlayer;
+
 
 
 

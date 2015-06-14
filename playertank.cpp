@@ -86,6 +86,12 @@ void PlayerTank::advance(int step)
 
 }
 
+void PlayerTank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    Tank::paint(painter,option,widget);
+    this->setFocus();
+}
+
 void PlayerTank::multipeButtonsPressed()
 {
     bool WASDProcessed = false;

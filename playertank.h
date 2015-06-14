@@ -21,6 +21,7 @@ public:
     void hitted(int damage) Q_DECL_OVERRIDE;
     int health() const;
     virtual void advance(int step) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
 signals:
     void playerTankDestroyed(PlayerTank::Player p = Player1);

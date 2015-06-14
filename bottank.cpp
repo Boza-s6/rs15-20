@@ -28,9 +28,10 @@ void BotTank::hitted(int damage)
     mHealth -= damage;
     if(mHealth <= 0){
 
-
+        emit botKilled();
         this->scene()->removeItem(this);
-        delete this;
+
+        //delete this;
     }
 
 }

@@ -109,7 +109,7 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
 {
     int x = this->pixmap().width();
     int y = this->pixmap().height();
-    this->setFocus();
+//    this->setFocus();
     painter->drawPixmap(-x/2,-y/2, pixmap());
 
 #ifdef DEBUG

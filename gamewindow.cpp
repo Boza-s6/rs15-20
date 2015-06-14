@@ -10,7 +10,8 @@ GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent), mTimer(),
       mView(new QGraphicsView),
       mScene(new QGraphicsScene(0, 0, SCENE_WIDTH, SCENE_HEIGHT, mView)),
-      mText()
+      mText(),
+      mBotReserve(NUM_OF_BOTS)
 {
 
     auto layout= new QVBoxLayout();
@@ -67,21 +68,46 @@ void GameWindow::mPlayerTankHealthChanged(int health)
 
 void GameWindow::playerKilled()
 {
-   // std::cout<<"mrtva si kokosko"<<std::endl;
+    // std::cout<<"mrtva si kokosko"<<std::endl;
     emit notifyPlayerKilled();
+}
+
+void GameWindow::mbotKilled()
+{
+    mBotReserve--;
+    std::cout<<mBotReserve<< std::endl;
+
+    if(mBotReserve>0){
+        BotTank *bt1 = new BotTank( 500,500, Tank::Orientation::DOWN);
+
+        mPlayer->setFocus();
+        mScene->setFocusItem(mPlayer);
+        mScene->addItem(bt1);
+
+        QObject::connect(bt1, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+    }
+
 }
 
 void GameWindow::init()
 {
     BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
     mScene->addItem(bot1);
+    QObject::connect(bot1, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
 
     BotTank *bot2 = new BotTank( 700, 80, Tank::Orientation::DOWN);
     mScene->addItem(bot2);
+    QObject::connect(bot2, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+
     BotTank *bot3 = new BotTank( 70, 600, Tank::Orientation::UP);
     mScene->addItem(bot3);
+    QObject::connect(bot3, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+
     BotTank *bot4 = new BotTank( 50, 600, Tank::Orientation::UP);
     mScene->addItem(bot4);
+    QObject::connect(bot4, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+
+
 
     mScene->addItem(&mText);
     mText.setPos(1010,100);
@@ -89,12 +115,14 @@ void GameWindow::init()
     mText.setDefaultTextColor(Qt::red);
     mText.setFont(QFont("times",16));
 
-    PlayerTank *player = new PlayerTank( 500,400, Tank::Orientation::LEFT, PlayerTank::Player::Player1);
-    player->setFocus();
-    mScene->addItem(player);
+    mPlayer = new PlayerTank( 500,400, Tank::Orientation::LEFT, PlayerTank::Player::Player1);
+    mPlayer->setFocus();
+    mScene->addItem(mPlayer);
 
-    QObject::connect(player, SIGNAL(playerTankHealthChanged(int)), this, SLOT(mPlayerTankHealthChanged(int)));
-    QObject::connect(player, SIGNAL(playerTankDestroyed()), this, SLOT(playerKilled()));
+    QObject::connect(mPlayer, SIGNAL(playerTankHealthChanged(int)), this, SLOT(mPlayerTankHealthChanged(int)));
+    QObject::connect(mPlayer, SIGNAL(playerTankDestroyed()), this, SLOT(playerKilled()));
+
+
 }
 
 
