@@ -14,16 +14,17 @@ class PlayerTank : public Tank
 public:
     enum Player {Player1, Player2};
 
-    PlayerTank(qreal x, qreal y, Orientation ori, Player p = Player::Player1, int health = 100);
+    PlayerTank(qreal x, qreal y, Orientation ori, Player p = Player::Player1, int health = TANK_HEALTH);
     ~PlayerTank();
     void keyPressEvent(QKeyEvent * event) Q_DECL_OVERRIDE;
     void keyReleaseEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
     void hitted(int damage) Q_DECL_OVERRIDE;
-
+    int health() const;
     virtual void advance(int step) Q_DECL_OVERRIDE;
 
 signals:
     void playerTankDestroyed(PlayerTank::Player p = Player1);
+    void playerTankHealthChanged(int health);
 
 private:
     void multipeButtonsPressed();

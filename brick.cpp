@@ -1,7 +1,7 @@
 #include "brick.h"
 
 Brick::Brick(qreal x, qreal y)
-    :SpecialQGraphicsPixmapItem(":/img/img/brick.png", x, y), mHealth(100)
+    :SpecialQGraphicsPixmapItem(":/img/img/brick.png", x, y), mHealth(BRICK_HEALTH)
 {
 
 }

@@ -9,7 +9,8 @@
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent), mTimer(),
       mView(new QGraphicsView),
-      mScene(new QGraphicsScene(0, 0, SCENE_WIDTH, SCENE_HEIGHT, mView))
+      mScene(new QGraphicsScene(0, 0, SCENE_WIDTH, SCENE_HEIGHT, mView)),
+      mText()
 {
 
     auto layout= new QVBoxLayout();
@@ -58,6 +59,12 @@ GameWindow::~GameWindow()
     delete mView;
 }
 
+void GameWindow::mPlayerTankHealthChanged(int health)
+{
+    // Ispisujemo helte playera
+    mText.setPlainText(QString("Health: ") + QString::number(health));
+}
+
 void GameWindow::init()
 {
     BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
@@ -70,9 +77,17 @@ void GameWindow::init()
     BotTank *bot4 = new BotTank( 50, 600, Tank::Orientation::UP);
     mScene->addItem(bot4);
 
+    mScene->addItem(&mText);
+    mText.setPos(1010,100);
+    mText.setPlainText(QString("Health: ") + QString::number(TANK_HEALTH));
+    mText.setDefaultTextColor(Qt::red);
+    mText.setFont(QFont("times",16));
+
     PlayerTank *player = new PlayerTank( 500,400, Tank::Orientation::LEFT, PlayerTank::Player::Player1);
     player->setFocus();
     mScene->addItem(player);
+
+    QObject::connect(player, SIGNAL(playerTankHealthChanged(int)), this, SLOT(mPlayerTankHealthChanged(int)));
 }
 
 

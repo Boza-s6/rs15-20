@@ -48,13 +48,18 @@ void PlayerTank::keyReleaseEvent(QKeyEvent *event)
 void PlayerTank::hitted(int damage)
 {
     mHealth -= damage;
-
+    emit playerTankHealthChanged(mHealth);
     if(mHealth <= 0){
 
         emit playerTankDestroyed(mPlayer);
         this->scene()->removeItem(this);
        // delete this;
     }
+}
+
+int PlayerTank::health() const
+{
+    return mHealth;
 }
 
 void PlayerTank::advance(int step)

@@ -23,6 +23,18 @@ BotTank::~BotTank()
 
 }
 
+void BotTank::hitted(int damage)
+{
+    mHealth -= damage;
+    if(mHealth <= 0){
+
+
+        this->scene()->removeItem(this);
+        delete this;
+    }
+
+}
+
 void BotTank::advance(int step)
 {
     if (!step)
