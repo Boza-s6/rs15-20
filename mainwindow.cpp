@@ -3,6 +3,8 @@
 #include <QPalette>
 #include <QDesktopWidget>
 #include "gamewindow.h"
+#include "playertank.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,7 +22,16 @@ MainWindow::MainWindow(QWidget *parent) :
     //za test rezim
     //ui->btn_1player->click();
 }
+void MainWindow::mPlayerKilled()
+{
+    mBackground->close();
 
+    ui->setupUi(this);
+    showMaximized();
+
+
+
+}
 //kad se prozor resizuje da se scalira slika
 void MainWindow::resizeEvent (QResizeEvent*)
 {
@@ -41,12 +52,14 @@ void MainWindow::on_btn_exit_clicked()
 
 void MainWindow::on_btn_1player_clicked()
 {
-    QWidget * tmp = this->centralWidget();
-    background = new GameWindow();
+    tmp = this->centralWidget();
+    mBackground = new GameWindow();
+    QObject::connect(mBackground, SIGNAL(notifyPlayerKilled()), this, SLOT(mPlayerKilled()));
 
-    setCentralWidget(background);
-    background = tmp;
-    background->setParent(0);
+    setCentralWidget(mBackground);
+    mBackground->showFullScreen();
+    mBackground->setParent(0);
+
 }
 
 void MainWindow::on_btn_2players_clicked()

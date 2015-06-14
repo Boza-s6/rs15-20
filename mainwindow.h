@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "constants.h"
+#include "gamewindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,9 +21,10 @@ private slots:
     void on_btn_1player_clicked();
     void on_btn_2players_clicked();
     void on_btn_exit_clicked();
-
+    void mPlayerKilled();
 private:
-    QWidget *background;
+    GameWindow *mBackground;
+    QWidget *tmp;
     Ui::MainWindow *ui;
     QPixmap* m_pPixmap;
     QPalette* m_pPalette;

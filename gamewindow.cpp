@@ -65,6 +65,12 @@ void GameWindow::mPlayerTankHealthChanged(int health)
     mText.setPlainText(QString("Health: ") + QString::number(health));
 }
 
+void GameWindow::playerKilled()
+{
+   // std::cout<<"mrtva si kokosko"<<std::endl;
+    emit notifyPlayerKilled();
+}
+
 void GameWindow::init()
 {
     BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
@@ -88,6 +94,7 @@ void GameWindow::init()
     mScene->addItem(player);
 
     QObject::connect(player, SIGNAL(playerTankHealthChanged(int)), this, SLOT(mPlayerTankHealthChanged(int)));
+    QObject::connect(player, SIGNAL(playerTankDestroyed()), this, SLOT(playerKilled()));
 }
 
 

@@ -22,6 +22,9 @@ public:
     ~GameWindow();
 public slots:
     void mPlayerTankHealthChanged(int health);
+    void playerKilled();
+signals:
+    void notifyPlayerKilled();
 private:
     void init();
 private:
