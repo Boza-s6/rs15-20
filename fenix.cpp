@@ -22,9 +22,11 @@ void Fenix::hitted(int damage)
     mHealth -= damage;
     if(mHealth <= 0)
     {
-        scene()->removeItem(this);
-        delete this;
         emit fenixDestroyed();
+        scene()->removeItem(this);
+
+        delete this;
+
     }
 }
 

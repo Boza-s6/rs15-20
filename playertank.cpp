@@ -50,9 +50,10 @@ void PlayerTank::hitted(int damage)
     mHealth -= damage;
 
     if(mHealth <= 0){
-        this->scene()->removeItem(this);
+
         emit playerTankDestroyed(mPlayer);
-        delete this;
+        this->scene()->removeItem(this);
+       // delete this;
     }
 }
 

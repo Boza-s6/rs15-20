@@ -25,7 +25,7 @@ void Brick::hitted(int damage)
     mHealth -= damage;
     if(mHealth <= 0){
         this->scene()->removeItem(this);
-        delete this;
+       // delete this;
     }
 }
 

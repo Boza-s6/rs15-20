@@ -35,7 +35,8 @@ GameWindow::GameWindow( QWidget *parent)
     init();
     //butik je otvoren!!!
 
-    Map::readMap(mScene, "maps/first.map");
+    //first, second, third, fourth - imena fajlova
+    Map::readMap(mScene, "maps/fourth.map");
 
     QObject::connect(&mTimer, SIGNAL(timeout()), mScene, SLOT(advance()));
     mTimer.start(30);
@@ -54,16 +55,16 @@ GameWindow::~GameWindow()
 void GameWindow::init()
 {
     BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
-//    mScene->addItem(bot1);
+    mScene->addItem(bot1);
 
-    BotTank *bot2 = new BotTank( 700, 0, Tank::Orientation::DOWN);
-//    mScene->addItem(bot2);
+    BotTank *bot2 = new BotTank( 700, 80, Tank::Orientation::DOWN);
+    mScene->addItem(bot2);
     BotTank *bot3 = new BotTank( 70, 600, Tank::Orientation::UP);
-//    mScene->addItem(bot3);
+    mScene->addItem(bot3);
     BotTank *bot4 = new BotTank( 50, 600, Tank::Orientation::UP);
-//    mScene->addItem(bot4);
+    mScene->addItem(bot4);
 
-    PlayerTank *player = new PlayerTank( 500,300, Tank::Orientation::LEFT, PlayerTank::Player::Player1);
+    PlayerTank *player = new PlayerTank( 500,400, Tank::Orientation::LEFT, PlayerTank::Player::Player1);
     player->setFocus();
     mScene->addItem(player);
 }
