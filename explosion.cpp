@@ -65,6 +65,7 @@ void Explosion::destroySelf()
     hide();
     mMusicExplosion->stop();
 //    scene()->removeItem(this);
-    delete this;
+//    delete this;
+    deleteLater();
 }
 

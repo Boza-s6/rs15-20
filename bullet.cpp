@@ -116,7 +116,8 @@ void Bullet::destroySelf()
     mMusic->stop();
     isDone = true;
 //    scene()->removeItem(this);
-    delete this;
+//    delete this;
+    deleteLater();
 }
 
 
