@@ -102,13 +102,9 @@ void GameWindow::init()
         mScene->removeItem(mPlayer);
         delete mPlayer;
         //Brisemo staru mapu sa scene
-        for(auto item : mScene->items())
-        {
-            if(dynamic_cast<Brick*>(item) || dynamic_cast<SolidBrick*>(item) || dynamic_cast<Fenix*>(item))
-            {
-                 mScene->removeItem(item);
-                 delete item;
-            }
+        for(auto item : mScene->items()){
+            mScene->removeItem(item);
+            //delete item;
         }
     }
 
