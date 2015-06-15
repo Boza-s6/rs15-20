@@ -131,7 +131,7 @@ void GameWindow::init()
             break;
     }
 
-    if(Lvl<4){
+    if(Lvl<5){
         BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
         mScene->addItem(bot1);
         QObject::connect(bot1, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
