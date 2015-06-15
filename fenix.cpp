@@ -27,7 +27,6 @@ void Fenix::hitted(int damage)
         emit fenixDestroyed();
         hide();
         isDone = true;
-//        scene()->removeItem(this);
         deleteLater();
 
     }

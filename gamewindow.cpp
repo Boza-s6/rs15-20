@@ -66,14 +66,13 @@ void GameWindow::mPlayerTankHealthChanged(int health)
 
 void GameWindow::playerKilled()
 {
-    // std::cout<<"mrtva si kokosko"<<std::endl;
+
     emit notifyPlayerKilled();
 }
-
+//kad je bot ubijen dodaj nove
 void GameWindow::mbotKilled()
 {
     mBotReserve--;
-    std::cout<<mBotReserve<< std::endl;
 
     if(mBotReserve>0){
         BotTank *bt1 = new BotTank( 500,500, Tank::Orientation::DOWN);
