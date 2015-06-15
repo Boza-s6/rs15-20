@@ -4,7 +4,7 @@
 #include "bottank.h"
 #include "playertank.h"
 #include <QTimer>
-#include <QtMultimedia>
+
 #include "constants.h"
 
 GameWindow::GameWindow( QWidget *parent)
@@ -45,9 +45,9 @@ GameWindow::GameWindow( QWidget *parent)
     mView->setFocus();
 
     //Pustanje pozadinske muzike
-    QMediaPlayer * music = new QMediaPlayer();
-    music->setMedia(QUrl("qrc:/sounds/sounds/igraj.mp3"));  //QUrl("qrc:/sounds/sounds/igraj.mp3") - za motivaciju xD
-    music->play();
+    mMusic = new QMediaPlayer();
+    mMusic->setMedia(QUrl("qrc:/sounds/sounds/igraj.mp3"));  //QUrl("qrc:/sounds/sounds/igraj.mp3") - za motivaciju xD
+    mMusic->play();
 
 }
 
@@ -66,7 +66,9 @@ void GameWindow::mPlayerTankHealthChanged(int health)
 
 void GameWindow::playerKilled()
 {
-
+    //brisemo muziku
+    delete mMusic;
+    deinit();
     emit notifyPlayerKilled();
 }
 //kad je bot ubijen dodaj nove
@@ -94,6 +96,12 @@ void GameWindow::mbotKilled()
 
 void GameWindow::fenixKilled()
 {
+    //brisemo muziku
+    delete mMusic;
+    //Brisemo naseg playera sa scene
+    mScene->removeItem(mPlayer);
+    delete mPlayer;
+    deinit();
     emit notifyFenixKilled();
 }
 
@@ -102,13 +110,11 @@ void GameWindow::init()
 
     mLvl++;
     if(mLvl>1){
-        //Brisemo naseg playera sa scene, kasnije cemo napraviti novog
+        //Brisemo naseg playera sa scene
         mScene->removeItem(mPlayer);
         delete mPlayer;
-        //Brisemo staru mapu sa scene
-        for(auto item : mScene->items()){
-            mScene->removeItem(item);
-        }
+        //Prelazimo na novi LVL, brisemo stari
+        deinit();
     }
 
     switch(mLvl){
@@ -160,9 +166,17 @@ void GameWindow::init()
     QObject::connect(mPlayer, SIGNAL(playerTankHealthChanged(int)), this, SLOT(mPlayerTankHealthChanged(int)));
     QObject::connect(mPlayer, SIGNAL(playerTankDestroyed()), this, SLOT(playerKilled()));
 
+
     QObject::connect(mFenix, SIGNAL(fenixDestroyed()), this, SLOT(fenixKilled()));
 
+}
 
+void GameWindow::deinit()
+{
+    //Brisemo staru mapu sa scene
+    for(auto item : mScene->items()){
+        mScene->removeItem(item);
+    }
 }
 
 

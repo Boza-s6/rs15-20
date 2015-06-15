@@ -16,6 +16,7 @@
 #include "bottank.h"
 #include "playertank.h"
 #include "fenix.h"
+#include <QtMultimedia>
 
 class GameWindow : public QWidget
 {
@@ -33,6 +34,7 @@ signals:
     void notifyFenixKilled();
 private:
     void init();
+    void deinit();
 private:
     QTimer mTimer;
     QGraphicsView  * mView;
@@ -43,7 +45,7 @@ private:
     PlayerTank *mPlayer;
     Fenix *mFenix;
     int mLvl;
-
+    QMediaPlayer * mMusic;
 
 
 //    std::vector<Tank*> tanks;
