@@ -98,9 +98,6 @@ void GameWindow::fenixKilled()
 {
     //brisemo muziku
     delete mMusic;
-    //Brisemo naseg playera sa scene
-    mScene->removeItem(mPlayer);
-    delete mPlayer;
     deinit();
     emit notifyFenixKilled();
 }
