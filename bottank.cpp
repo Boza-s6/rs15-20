@@ -22,17 +22,16 @@ BotTank::~BotTank()
 {
 
 }
-
+//kada je bot pogodjen
 void BotTank::hitted(int damage)
 {
+    //smanjenje helta i emitovanje signala radi dodavanja novog bota
     mHealth -= damage;
     if(mHealth <= 0 && !isDone){
 
         emit botKilled();
         hide();
         isDone = true;
-//        this->scene()->removeItem(this);
-//        delete this;
         deleteLater();
     }
 
@@ -43,9 +42,10 @@ void BotTank::advance(int step)
     if (!step || isDone)
         return;
 
+    //random vreme koje se generise radi random ispucavanja metkova
     int r=BOT_MAX_FIRING_TIME- rand()%1500;
 
-
+    //ako je isteklo vreme ispaljuje se novi metak
     if(mTimeOfLastBullet.elapsed() >= r){
         qreal x=this->x();
         qreal y=this->y();
@@ -55,6 +55,7 @@ void BotTank::advance(int step)
         mTimeOfLastBullet.restart();
     }
 
+    //sudaranje sa ostalim item-ima i random kretanje
     mIsColliding = false;
     mIsColliding = mCollidingRect.collidingItems().size() == 0 ? false : true;
 

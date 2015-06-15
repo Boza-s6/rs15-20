@@ -22,16 +22,13 @@ Brick::~Brick()
 {
 
 }
-
+//umanjenje helta kada je cigla pogodjena
 void Brick::hitted(int damage)
 {
     mHealth -= damage;
     if(mHealth <= 0 && !isDone){
         hide();
         isDone = true;
-
-//        this->scene()->removeItem(this);
-//        delete this;
         deleteLater();
     }
 }

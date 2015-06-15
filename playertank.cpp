@@ -55,8 +55,6 @@ void PlayerTank::hitted(int damage)
         hide();
         isDone = true;
         emit playerTankDestroyed(mPlayer);
-//        this->scene()->removeItem(this);
-       // delete this;
         deleteLater();
     }
 }

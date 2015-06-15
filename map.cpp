@@ -1,12 +1,13 @@
 #include "map.h"
 #include <iostream>
 
+//ucitavanje mape iz fajla
 Fenix *Map::readMap(QGraphicsScene *scena, const char *map)
 {
 
     Fenix *fenixptr;
     /*
-     * Svaka mapa ja 20 x 14 brojeva koji oznacavaju tip cigle
+     * Svaka mapa ja 40 x 28 brojeva koji oznacavaju tip cigle
      * */
     static qreal const EMPTY_SIZE = 25;
     static qreal const BRICK_SIZE = Brick(0,0).boundingRect().width();

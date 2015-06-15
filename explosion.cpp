@@ -43,6 +43,7 @@ void Explosion::advance(int phase)
     if(phase == 0 || isDone){
         return;
     }
+    //sta se sve sudarilo sa eksplozijom i pozivanje hitted
     QList<QGraphicsItem*> list = collidingItems();
 
     for(auto &item: list){
@@ -64,8 +65,6 @@ void Explosion::destroySelf()
     isDone = true;
     hide();
     mMusicExplosion->stop();
-//    scene()->removeItem(this);
-//    delete this;
     deleteLater();
 }
 

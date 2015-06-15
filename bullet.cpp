@@ -47,8 +47,8 @@ void Bullet::advance(int step)
     if(step == 0 || isDone)
         return;
 
+    //kretanje metka
     switch (mOrientation) {
-
         case Tank::Orientation::UP:{
             moveBy(0,-mSpeed);
             setRotation(0);
@@ -68,6 +68,7 @@ void Bullet::advance(int step)
             break;
     }
 
+    //sudaranje metka
     auto list = collidingItems();
     bool isColliding = list.size()==0 ? false : true;
 
@@ -115,8 +116,6 @@ void Bullet::destroySelf()
     hide();
     mMusic->stop();
     isDone = true;
-//    scene()->removeItem(this);
-//    delete this;
     deleteLater();
 }
 
