@@ -5,6 +5,7 @@
 #include "playertank.h"
 #include <QTimer>
 #include <QtMultimedia>
+#include "constants.h"
 
 GameWindow::GameWindow( QWidget *parent)
     : QWidget(parent), mTimer(),
@@ -35,11 +36,8 @@ GameWindow::GameWindow( QWidget *parent)
     mView->resize(1050, 750);
     mView->show();
 
+    Lvl=0;
     init();
-    //butik je otvoren!!!
-
-    //first, second, third, fourth - imena fajlova
-    mFenix = Map::readMap(mScene, "maps/fourth.map");
 
     QObject::connect(&mTimer, SIGNAL(timeout()), mScene, SLOT(advance()));
     mTimer.start(30);
@@ -86,28 +84,70 @@ void GameWindow::mbotKilled()
 
         QObject::connect(bt1, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
     }
+    else if(mBotReserve+3 == 0){//pobili smo sve neprijatelje sa scene i iz rezerve
+        //Resetujemo brojac neprijatelja koji su u rezervi
+        mBotReserve = NUM_OF_BOTS;
+        //pozivamo init i prelazimo na sl. LVL
+        init();
+    }
 
 }
 
 void GameWindow::init()
 {
-    BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
-    mScene->addItem(bot1);
-    QObject::connect(bot1, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
 
-    BotTank *bot2 = new BotTank( 700, 80, Tank::Orientation::DOWN);
-    mScene->addItem(bot2);
-    QObject::connect(bot2, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+    Lvl++;
+    if(Lvl>1){
+        //Brisemo naseg playera sa scene, kasnije cemo napraviti novog
+        mScene->removeItem(mPlayer);
+        delete mPlayer;
+        //Brisemo staru mapu sa scene
+        for(auto item : mScene->items())
+        {
+            if(dynamic_cast<Brick*>(item) || dynamic_cast<SolidBrick*>(item) || dynamic_cast<Fenix*>(item))
+            {
+                 mScene->removeItem(item);
+                 delete item;
+            }
 
-    BotTank *bot3 = new BotTank( 70, 600, Tank::Orientation::UP);
-    mScene->addItem(bot3);
-    QObject::connect(bot3, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+        }
+    }
 
-    BotTank *bot4 = new BotTank( 50, 600, Tank::Orientation::UP);
-    mScene->addItem(bot4);
-    QObject::connect(bot4, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+    switch(Lvl){
+        case 1:
+            Map::readMap(mScene, "maps/first.map");
+            break;
+    case 2:
+            Map::readMap(mScene, "maps/second.map");
+            break;
+    case 3:
+            Map::readMap(mScene, "maps/third.map");
+            break;
+    case 4:
+            Map::readMap(mScene, "maps/fourth.map");
+            break;
+    default:
+            Map::readMap(mScene, "maps/win.map");
+            break;
+    }
 
+    if(Lvl<4){
+        BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
+        mScene->addItem(bot1);
+        QObject::connect(bot1, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
 
+        BotTank *bot2 = new BotTank( 700, 80, Tank::Orientation::DOWN);
+        mScene->addItem(bot2);
+        QObject::connect(bot2, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+
+        BotTank *bot3 = new BotTank( 70, 600, Tank::Orientation::UP);
+        mScene->addItem(bot3);
+        QObject::connect(bot3, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+
+        BotTank *bot4 = new BotTank( 50, 600, Tank::Orientation::UP);
+        mScene->addItem(bot4);
+        QObject::connect(bot4, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
+    }
 
     mScene->addItem(&mText);
     mText.setPos(1010,100);
