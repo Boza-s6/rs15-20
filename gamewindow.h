@@ -40,7 +40,7 @@ private:
     int mBotReserve;
     PlayerTank *mPlayer;
     Fenix *mFenix;
-    int Lvl;
+    int mLvl;
 
 
 

@@ -36,7 +36,7 @@ GameWindow::GameWindow( QWidget *parent)
     mView->resize(1050, 750);
     mView->show();
 
-    Lvl=0;
+    mLvl=0;
     init();
 
     QObject::connect(&mTimer, SIGNAL(timeout()), mScene, SLOT(advance()));
@@ -96,8 +96,8 @@ void GameWindow::mbotKilled()
 void GameWindow::init()
 {
 
-    Lvl++;
-    if(Lvl>1){
+    mLvl++;
+    if(mLvl>1){
         //Brisemo naseg playera sa scene, kasnije cemo napraviti novog
         mScene->removeItem(mPlayer);
         delete mPlayer;
@@ -109,11 +109,10 @@ void GameWindow::init()
                  mScene->removeItem(item);
                  delete item;
             }
-
         }
     }
 
-    switch(Lvl){
+    switch(mLvl){
         case 1:
             Map::readMap(mScene, "maps/first.map");
             break;
@@ -131,7 +130,7 @@ void GameWindow::init()
             break;
     }
 
-    if(Lvl<5){
+    if(mLvl<5){
         BotTank *bot1 = new BotTank( 100,100, Tank::Orientation::DOWN);
         mScene->addItem(bot1);
         QObject::connect(bot1, SIGNAL(botKilled()), this, SLOT(mbotKilled()));
