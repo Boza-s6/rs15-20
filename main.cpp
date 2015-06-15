@@ -11,8 +11,8 @@ int main(int argc, char *argv[])
     QIcon icon(":/img/img/tank_icon.png");
     window.setWindowIcon(icon);
 
-    window.showMaximized();//U test rezimu, da imam x za izlazak
-//    window.showFullScreen();
+   // window.showMaximized();//U test rezimu, da imam x za izlazak
+    window.showFullScreen();
 
 
 //    window.show();

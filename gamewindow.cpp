@@ -92,6 +92,11 @@ void GameWindow::mbotKilled()
 
 }
 
+void GameWindow::fenixKilled()
+{
+    emit notifyFenixKilled();
+}
+
 void GameWindow::init()
 {
 
@@ -103,25 +108,24 @@ void GameWindow::init()
         //Brisemo staru mapu sa scene
         for(auto item : mScene->items()){
             mScene->removeItem(item);
-            //delete item;
         }
     }
 
     switch(mLvl){
         case 1:
-            Map::readMap(mScene, "maps/first.map");
+            mFenix=Map::readMap(mScene, "maps/first.map");
             break;
     case 2:
-            Map::readMap(mScene, "maps/second.map");
+            mFenix=Map::readMap(mScene, "maps/second.map");
             break;
     case 3:
-            Map::readMap(mScene, "maps/third.map");
+            mFenix=Map::readMap(mScene, "maps/third.map");
             break;
     case 4:
-            Map::readMap(mScene, "maps/fourth.map");
+            mFenix=Map::readMap(mScene, "maps/fourth.map");
             break;
     default:
-            Map::readMap(mScene, "maps/win.map");
+            mFenix=Map::readMap(mScene, "maps/win.map");
             break;
     }
 
@@ -155,6 +159,8 @@ void GameWindow::init()
 
     QObject::connect(mPlayer, SIGNAL(playerTankHealthChanged(int)), this, SLOT(mPlayerTankHealthChanged(int)));
     QObject::connect(mPlayer, SIGNAL(playerTankDestroyed()), this, SLOT(playerKilled()));
+
+    QObject::connect(mFenix, SIGNAL(fenixDestroyed()), this, SLOT(fenixKilled()));
 
 
 }

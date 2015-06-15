@@ -32,6 +32,15 @@ void MainWindow::mPlayerKilled()
 
 
 }
+
+void MainWindow::mFenixKilled()
+{
+    mBackground->close();
+
+    ui->setupUi(this);
+    showMaximized();
+
+}
 //kad se prozor resizuje da se scalira slika
 void MainWindow::resizeEvent (QResizeEvent*)
 {
@@ -55,6 +64,8 @@ void MainWindow::on_btn_1player_clicked()
     tmp = this->centralWidget();
     mBackground = new GameWindow();
     QObject::connect(mBackground, SIGNAL(notifyPlayerKilled()), this, SLOT(mPlayerKilled()));
+    QObject::connect(mBackground, SIGNAL(notifyFenixKilled()), this, SLOT(mFenixKilled()));
+
 
     setCentralWidget(mBackground);
     mBackground->showFullScreen();

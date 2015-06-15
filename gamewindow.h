@@ -27,8 +27,10 @@ public slots:
     void mPlayerTankHealthChanged(int health);
     void playerKilled();
     void mbotKilled();
+    void fenixKilled();
 signals:
     void notifyPlayerKilled();
+    void notifyFenixKilled();
 private:
     void init();
 private:

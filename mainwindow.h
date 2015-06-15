@@ -22,6 +22,7 @@ private slots:
     void on_btn_2players_clicked();
     void on_btn_exit_clicked();
     void mPlayerKilled();
+    void mFenixKilled();
 private:
     GameWindow *mBackground;
     QWidget *tmp;
