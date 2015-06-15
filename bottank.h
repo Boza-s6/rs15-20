@@ -24,6 +24,7 @@ signals:
 private:
     QTime mTimeOfLastBullet;
     qreal mAngle;
+    bool isDone;
 
 };
 

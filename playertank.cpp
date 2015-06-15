@@ -8,7 +8,7 @@
 PlayerTank::PlayerTank(qreal x, qreal y, Tank::Orientation ori=Orientation::UP , Player p, int health)
     : Tank(ori, x,y, ":/img/img/player1_tank.png", health),
       mButtonsPressed(), mTimeOfLastBullet(),
-      mPlayer(p)
+      mPlayer(p), isDone(false)
 {
     if(mPlayer == Player::Player1){
         UP_BUTTON = Qt::Key_W;
@@ -49,11 +49,15 @@ void PlayerTank::hitted(int damage)
 {
     mHealth -= damage;
     emit playerTankHealthChanged(mHealth);
-    if(mHealth <= 0){
 
+    if(mHealth <= 0 && !isDone)
+    {
+        hide();
+        isDone = true;
         emit playerTankDestroyed(mPlayer);
-        this->scene()->removeItem(this);
+//        this->scene()->removeItem(this);
        // delete this;
+        deleteLater();
     }
 }
 
@@ -64,7 +68,7 @@ int PlayerTank::health() const
 
 void PlayerTank::advance(int step)
 {
-    if (!step)
+    if (!step || isDone)
         return;
 
     if(mButtonsPressed.size() == 1)

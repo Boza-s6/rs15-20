@@ -1,8 +1,10 @@
 #include "map.h"
 #include <iostream>
 
-void Map::readMap(QGraphicsScene *scena, const char *map)
+Fenix *Map::readMap(QGraphicsScene *scena, const char *map)
 {
+
+    Fenix *fenixptr;
     /*
      * Svaka mapa ja 20 x 14 brojeva koji oznacavaju tip cigle
      * */
@@ -51,7 +53,8 @@ void Map::readMap(QGraphicsScene *scena, const char *map)
                 break;
             case BrickType::FENIX:
                 if(fenix == false){
-                    scena->addItem(new Fenix(positionX, positionY));
+                    fenixptr = new Fenix(positionX, positionY);
+                    scena->addItem(fenixptr);
                     positionX += FENIX_SIZE;
                     fenix = true;
                     break;
@@ -69,4 +72,5 @@ void Map::readMap(QGraphicsScene *scena, const char *map)
         positionX = 0;
         positionY += BRICK_SIZE;
     }
+    return fenixptr;
 }

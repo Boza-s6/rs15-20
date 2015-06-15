@@ -1,17 +1,20 @@
 #include "brick.h"
 
 Brick::Brick(qreal x, qreal y)
-    :SpecialQGraphicsPixmapItem(":/img/img/brick.png", x, y), mHealth(BRICK_HEALTH)
+    :SpecialQGraphicsPixmapItem(":/img/img/brick.png", x, y), mHealth(BRICK_HEALTH),
+      isDone(false)
 {
 
 }
 Brick::Brick(const char *slika, qreal x, qreal y)
-    :SpecialQGraphicsPixmapItem(slika, x, y), mHealth(100)
+    :SpecialQGraphicsPixmapItem(slika, x, y), mHealth(BRICK_HEALTH),
+      isDone(false)
 {
 
 }
 Brick::Brick()
-    :SpecialQGraphicsPixmapItem(), mHealth(100)
+    :SpecialQGraphicsPixmapItem(), mHealth(BRICK_HEALTH),
+      isDone(false)
 {
 }
 
@@ -23,9 +26,13 @@ Brick::~Brick()
 void Brick::hitted(int damage)
 {
     mHealth -= damage;
-    if(mHealth <= 0){
-        this->scene()->removeItem(this);
-       // delete this;
+    if(mHealth <= 0 && !isDone){
+        hide();
+        isDone = true;
+
+//        this->scene()->removeItem(this);
+//        delete this;
+        deleteLater();
     }
 }
 

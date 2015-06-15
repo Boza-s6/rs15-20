@@ -61,7 +61,10 @@ void Explosion::advance(int phase)
 
 void Explosion::destroySelf()
 {
-    scene()->removeItem(this);
+    isDone = true;
+    hide();
+    mMusicExplosion->stop();
+//    scene()->removeItem(this);
     delete this;
 }
 

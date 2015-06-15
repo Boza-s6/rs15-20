@@ -1,13 +1,15 @@
 #include "fenix.h"
 
 Fenix::Fenix()
-    :SpecialQGraphicsPixmapItem(), mHealth(300)
+    : SpecialQGraphicsPixmapItem(), mHealth(FENIX_HEALTH),
+      isDone(false)
 {
 
 }
 
 Fenix::Fenix(qreal x, qreal y)
-    : SpecialQGraphicsPixmapItem(":/img/img/fenix.png", x, y), mHealth(300)
+    : SpecialQGraphicsPixmapItem(":/img/img/fenix.png", x, y), mHealth(FENIX_HEALTH),
+      isDone(false)
 {
 
 }
@@ -20,12 +22,13 @@ Fenix::~Fenix()
 void Fenix::hitted(int damage)
 {
     mHealth -= damage;
-    if(mHealth <= 0)
+    if(mHealth <= 0 && !isDone)
     {
         emit fenixDestroyed();
-        scene()->removeItem(this);
-
-        delete this;
+        hide();
+        isDone = true;
+//        scene()->removeItem(this);
+        deleteLater();
 
     }
 }

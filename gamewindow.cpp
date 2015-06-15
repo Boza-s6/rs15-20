@@ -39,7 +39,7 @@ GameWindow::GameWindow( QWidget *parent)
     //butik je otvoren!!!
 
     //first, second, third, fourth - imena fajlova
-    Map::readMap(mScene, "maps/fourth.map");
+    mFenix = Map::readMap(mScene, "maps/fourth.map");
 
     QObject::connect(&mTimer, SIGNAL(timeout()), mScene, SLOT(advance()));
     mTimer.start(30);

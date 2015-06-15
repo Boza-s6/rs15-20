@@ -19,6 +19,7 @@ signals:
 
 private:
     int mHealth;
+    bool isDone;
 };
 
 #endif // FENIX_H

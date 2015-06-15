@@ -20,7 +20,7 @@ enum BrickType{
 };
 namespace Map {
 
-    void readMap(QGraphicsScene * scena, const char * map = ":/maps/first.map");
+    Fenix* readMap(QGraphicsScene * scena, const char * map = ":/maps/first.map");
 }
 
 #endif // MAP_H

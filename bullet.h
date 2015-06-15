@@ -39,6 +39,7 @@ private:
     qreal mSpeed;
     QMediaPlayer * mMusic;
     Tank::TankType mTankType;
+    bool isDone;
 
 };
 

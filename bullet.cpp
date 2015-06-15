@@ -7,7 +7,8 @@
 
 Bullet::Bullet(Tank::Orientation direction, QPointF point, Tank::TankType type)
     : mImage(":/img/img/metak.png"), mOrientation(direction),
-      mPoint(point), mSpeed(BULLET_SPEED), mTankType(type)
+      mPoint(point), mSpeed(BULLET_SPEED), mTankType(type),
+      isDone(false)
 {
     setFlags(QGraphicsItem::ItemIsMovable);
     mapFromScene(mPoint); //mozda ne treba ovo
@@ -43,7 +44,7 @@ void Bullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
 
 void Bullet::advance(int step)
 {
-    if(step == 0)
+    if(step == 0 || isDone)
         return;
 
     switch (mOrientation) {
@@ -111,7 +112,10 @@ void Bullet::advance(int step)
 
 void Bullet::destroySelf()
 {
-    scene()->removeItem(this);
+    hide();
+    mMusic->stop();
+    isDone = true;
+//    scene()->removeItem(this);
     delete this;
 }
 

@@ -16,6 +16,7 @@ protected:
     Brick(const char * slika, qreal x, qreal y);
 private:
     int mHealth;
+    bool isDone;
 };
 
 #endif // BRICK_H

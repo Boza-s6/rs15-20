@@ -37,6 +37,7 @@ private:
     QTime mTimeOfLastBullet;
     int UP_BUTTON, DOWN_BUTTON, LEFT_BUTTON, RIGHT_BUTTON, FIRE_BUTTON;
     Player mPlayer;
+    bool isDone;
 
 };
 

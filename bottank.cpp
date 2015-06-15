@@ -9,7 +9,7 @@
 
 BotTank::BotTank(qreal x, qreal y, Tank::Orientation ori=Orientation::DOWN, int health)
     : Tank(ori, x,y, ":/img/img/player2_tank.png", health),
-      mTimeOfLastBullet()
+      mTimeOfLastBullet(), isDone(false)
 {
     setRotation(getAngleFromOrientation(ori));
     mTimeOfLastBullet.start();
@@ -26,19 +26,21 @@ BotTank::~BotTank()
 void BotTank::hitted(int damage)
 {
     mHealth -= damage;
-    if(mHealth <= 0){
+    if(mHealth <= 0 && !isDone){
 
         emit botKilled();
-        this->scene()->removeItem(this);
-
-        //delete this;
+        hide();
+        isDone = true;
+//        this->scene()->removeItem(this);
+//        delete this;
+        deleteLater();
     }
 
 }
 
 void BotTank::advance(int step)
 {
-    if (!step)
+    if (!step || isDone)
         return;
 
     int r=BOT_MAX_FIRING_TIME- rand()%1500;

@@ -15,6 +15,7 @@
 #include <QGraphicsTextItem>
 #include "bottank.h"
 #include "playertank.h"
+#include "fenix.h"
 
 class GameWindow : public QWidget
 {
@@ -38,6 +39,7 @@ private:
     int mPlayerNumLife;  //broj zivota playera
     int mBotReserve;
     PlayerTank *mPlayer;
+    Fenix *mFenix;
 
 
 
